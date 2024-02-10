@@ -50,7 +50,9 @@
             </div>
         </div>
     </main>
-
+    <div class="overlay"></div>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.51/build/spline-viewer.js"></script>
+    <spline-viewer url="https://prod.spline.design/c9fcTwaKmqpWhCkC/scene.splinecode"></spline-viewer>
 
 
     <script src="/DHVANI/assets/js/login.js" async defer></script>
