@@ -26,7 +26,12 @@
         <div class="form-box">
             <div class="form-value">
                 <form action="">
-                    <h2>Login</h2>
+                    <h2>Signup</h2>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="name" required>
+                        <label for="">Name</label>
+                    </div>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
                         <input type="email" required>
@@ -42,10 +47,10 @@
                         <a href="#">Forget password?</a>
 
                     </div>
-                    <button>Log in</button>
+                    <button>Register</button>
                     <div class="register">
-                        <label>Don't have an account?</label>
-                        <a href="../DGL_123_PROJECT/Controllers/signup.php"> Register</a>
+                        <label>Already have an account?</label>
+                        <a href="../DGL_123_PROJECT/Controllers/signup.php"> Login</a>
                 </form>
             </div>
         </div>

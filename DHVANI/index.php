@@ -1,6 +1,6 @@
 <?php
 // Include the header
-include 'views/login.view.php';
+include 'views/signup.view.php';
 
 
 
