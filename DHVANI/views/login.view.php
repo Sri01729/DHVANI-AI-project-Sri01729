@@ -15,10 +15,10 @@
     <header>
         <nav class="navbar">
             <a href="/" class="logo">DHVANI</a>
-            <div class="nav-buttons">
-                <button onclick="location.href='/login'" class="btn login">Login</button>
-                <button onclick="location.href='/signup'" class="btn signup">Signup</button>
-            </div>
+
+            <button onclick="location.href='/login'" class="btn login">Login</button>
+            <button onclick="location.href='/signup'" class="btn signup">Signup</button>
+
         </nav>
     </header>
     <main>

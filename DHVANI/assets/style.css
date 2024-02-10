@@ -18,6 +18,10 @@ body {
   color: white;
   text-decoration: none;
 }
+.nav-buttons {
+  display: flex;
+  flex-direction: row;
+}
 
 .nav-buttons .btn {
   padding: 10px 15px;
