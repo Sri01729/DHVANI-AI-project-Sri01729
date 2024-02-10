@@ -1,59 +1,203 @@
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
-.topnav {
-  overflow: hidden;
-  background-color: #121212;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  backdrop-filter: blur(15px);
+  color: white;
+  padding: 10px 20px;
 }
 
-.topnav a {
-  float: right;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
+.navbar .logo {
+  font-size: 24px;
+  color: white;
   text-decoration: none;
-  font-size: 17px;
 }
 
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
+.nav-buttons .btn {
+  padding: 10px 15px;
+  margin-left: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.topnav a.active {
+.login {
   background-color: white;
   color: black;
+  border-radius: 20px;
 }
 
-.topnav .icon {
-  display: none;
+.signup {
+  background-color: black;
+  color: white;
+  border-radius: 20px;
 }
 
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {
-    display: none;
+.btn:hover {
+  opacity: 0.7;
+}
+
+spline-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+.overlay {
+  position: fixed;
+  width: 150px;
+  height: 50px;
+  bottom: 20px;
+  right: 20px;
+  background-color: black;
+  z-index: 10;
+}
+
+/* ===========================Login form====================================== */
+
+.form-box {
+  position: relative;
+  width: 350px;
+  height: 450px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto; /* Center the form on the page */
+  margin-top: 100px;
+}
+
+h2 {
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
+}
+
+.inputbox {
+  position: relative;
+  margin: 30px 0;
+  width: 310px; /* Adjusted for smaller screens */
+  border-bottom: 2px solid #fff;
+}
+
+.inputbox label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 1em;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+  top: -5px;
+}
+
+.inputbox input {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 0 35px 0 5px;
+  color: #fff;
+}
+
+.inputbox ion-icon {
+  position: absolute;
+  right: 8px;
+  color: #fff;
+  font-size: 1.2em;
+  top: 20px;
+}
+
+.forget {
+  margin: -15px 0 15px;
+  font-size: 0.9em;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.forget label input {
+  margin-right: 3px;
+}
+
+.forget label a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.forget label a:hover {
+  text-decoration: underline;
+}
+
+button {
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  background: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.register {
+  font-size: 0.9em;
+  color: #fff;
+  text-align: center;
+  margin: 25px 0 10px;
+}
+
+.register p a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+}
+
+.register p a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .form-box {
+    width: 90%; /* Make the form width responsive */
+    height: auto; /* Adjust height automatically */
+    padding: 20px; /* Add some padding for smaller screens */
   }
-  .topnav a.icon {
-    float: right;
-    display: block;
+  .inputbox {
+    width: calc(100% - 40px); /* Adjust width with padding considered */
   }
 }
 
-@media screen and (max-width: 600px) {
-  .topnav.responsive {
-    position: relative;
+@media (max-width: 400px) {
+  h2 {
+    font-size: 1.5em; /* Smaller font size for very small screens */
   }
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
+  .inputbox label,
+  .inputbox input,
+  .forget,
+  button,
+  .register {
+    font-size: 0.8em; /* Smaller font sizes for all text elements */
   }
 }
