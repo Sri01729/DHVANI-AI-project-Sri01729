@@ -13,6 +13,16 @@
 
 <body>
     <header>
+        <div id="mySidenav" class="sidenav">
+            <a href="" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">Home</a>
+            <a href="#">Artists</a>
+            <a href="#">Genre</a>
+            <a href="#">Climate</a>
+            <a href="#">Place</a>
+            <a href="#">mood</a>
+
+        </div>
         <nav id="navlist">
             <div class="logo">
                 <img src="/DHVANI/assets/img/DHVANI.svg" alt="">
