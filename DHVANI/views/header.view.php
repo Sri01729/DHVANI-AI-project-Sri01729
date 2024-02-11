@@ -8,6 +8,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/DHVANI/assets/style.css">
 </head>
 
@@ -24,7 +27,8 @@
         </div>
     </header>
     <nav id="navlist">
-        <a href="#">DHVANI</a>
+
+        <div class="logo"><a href="#">DHVANI</a></div>
         <div class="block1">
             <a href="#">Profile</a>
             <a href="#">About</a>
@@ -37,19 +41,7 @@
         </div>
         <div class="nav-main-buttons">
             <button style="font-size:12px"><i class="fa fa-sign-out"></i></button>
-            <span style="font-size:30px;cursor:pointer;color:#604cff;margin-right: 20px ;"
+            <span style="font-size:40px;cursor:pointer;color:#604cff;margin-right: 20px ;"
                 onclick="openNav()">&#9776;</span>
         </div>
     </nav>
-
-    <script>
-    function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-        document.getElementById("navlist").style.marginLeft = "250px";
-    }
-
-    function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("navlist").style.marginLeft = "0";
-    }
-    </script>
