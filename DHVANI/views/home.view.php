@@ -17,7 +17,15 @@
         <h2>New Releases</h2>
         <div class="carousel">
             <div class="card">
-                <div class="card-image"></div>
+                <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                <div class="card-info">
+                    <p class="song-name">Song name</p>
+                    <p class="artist-name">Artist name</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
                 <div class="card-info">
                     <p class="song-name">Song name</p>
                     <p class="artist-name">Artist name</p>

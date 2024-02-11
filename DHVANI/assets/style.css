@@ -381,3 +381,23 @@ h2 {
   font-size: 24px;
   font-family: "Courier New", Courier, monospace;
 }
+
+/* ============================== Album carousel===================================*/
+
+.card {
+  color: white;
+  background-color: black;
+  width: 300px;
+  text-align: center;
+  background: transparent;
+  backdrop-filter: blur(15px);
+  border: 2px solid #604cff;
+}
+.card img {
+  width: 200px;
+  margin: auto;
+}
+.carousel {
+  display: flex;
+  gap: 20px;
+}
