@@ -21,10 +21,12 @@
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("navlist").style.marginLeft = "250px";
+    document.getElementById("mySidenav").style.borderRight = "2px solid #604cff";
 }
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("navlist").style.marginLeft = "0";
+    document.getElementById("mySidenav").style.border = "none";
 }
 </script>
