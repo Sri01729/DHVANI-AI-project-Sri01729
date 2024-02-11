@@ -12,16 +12,17 @@
 </head>
 
 <body>
-    <header>
+    <header class="introHeader">
         <nav class="navbar">
             <a href="/" class="logo">DHVANI</a>
-
-            <button onclick="location.href='/login'" class="btn login">Login</button>
-            <button onclick="location.href='/signup'" class="btn signup">Signup</button>
-
+            <div class="nav-buttons">
+                <button onclick="window.location.href='/DHVANI/views/login.view.php';" class="btn login">Login</button>
+                <button onclick="window.location.href='/DHVANI/views/signup.view.php';"
+                    class="btn signup">Signup</button>
+            </div>
         </nav>
     </header>
-    <main>
+    <section class="intro">
 
         <div class="form-box">
             <div class="form-value">
@@ -45,17 +46,17 @@
                     <button>Log in</button>
                     <div class="register">
                         <label>Don't have an account?</label>
-                        <a href="../DGL_123_PROJECT/Controllers/signup.php"> Register</a>
+                        <a href="/DHVANI/views/signup.view.php"> Register</a>
                 </form>
             </div>
         </div>
-    </main>
+    </section>
     <div class="overlay"></div>
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.51/build/spline-viewer.js"></script>
     <spline-viewer url="https://prod.spline.design/c9fcTwaKmqpWhCkC/scene.splinecode"></spline-viewer>
 
 
-    <script src="/DHVANI/assets/js/login.js" async defer></script>
+    <script src="/DHVANI/assets/js/main.js" async defer></script>
 </body>
 
 </html>

@@ -1,7 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "poppins", sans-serif;
 }
+
+/* .introHeader,
+.intro {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+} */
 
 .navbar {
   display: flex;
@@ -15,7 +24,7 @@ body {
 
 .navbar .logo {
   font-size: 24px;
-  color: white;
+  color: #604cff;
   text-decoration: none;
 }
 .nav-buttons {
@@ -47,6 +56,7 @@ body {
   opacity: 0.7;
 }
 
+/* =========================== 3D animation====================================== */
 spline-viewer {
   position: fixed;
   top: 0;
@@ -73,7 +83,7 @@ spline-viewer {
   width: 350px;
   height: 470px;
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  border: 2px solid #604cff;
   border-radius: 20px;
   backdrop-filter: blur(15px);
   display: flex;
@@ -186,7 +196,7 @@ button {
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .form-box {
-    width: 90%; /* Make the form width responsive */
+    width: fit-content; /* Make the form width responsive */
     height: auto; /* Adjust height automatically */
     padding: 20px; /* Add some padding for smaller screens */
   }

@@ -16,13 +16,13 @@
         <nav class="navbar">
             <a href="/" class="logo">DHVANI</a>
             <div class="nav-buttons">
-                <button onclick="location.href='/login'" class="btn login">Login</button>
-                <button onclick="location.href='/signup'" class="btn signup">Signup</button>
+                <button onclick="window.location.href='/DHVANI/views/login.view.php';" class="btn signup">Login</button>
+                <button onclick="window.location.href='/DHVANI/views/signup.view.php';"
+                    class="btn login">Signup</button>
             </div>
         </nav>
     </header>
-    <main>
-
+    <section>
         <div class="form-box">
             <div class="form-value">
                 <form action="">
@@ -50,17 +50,17 @@
                     <button>Register</button>
                     <div class="register">
                         <label>Already have an account?</label>
-                        <a href="../DGL_123_PROJECT/Controllers/signup.php"> Login</a>
+                        <a href="/DHVANI/views/login.view.php"> Login</a>
                 </form>
             </div>
         </div>
-    </main>
+    </section>
     <div class="overlay"></div>
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.51/build/spline-viewer.js"></script>
     <spline-viewer url="https://prod.spline.design/c9fcTwaKmqpWhCkC/scene.splinecode"></spline-viewer>
 
 
-    <script src="/DHVANI/assets/js/login.js" async defer></script>
+    <script src="/DHVANI/assets/js/main.js" async defer></script>
 </body>
 
 </html>
