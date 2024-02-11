@@ -13,8 +13,24 @@
 
 <body>
     <header>
-        <nav class="navbar">
-            <a href="/" class="logo">DHVANI</a>
-
+        <nav id="navlist">
+            <div class="logo">
+                <img src="/DHVANI/assets/img/DHVANI.svg" alt="">
+            </div>
+            <div class="block1">
+                <a href="#">Profile</a>
+                <a href="#">About</a>
+            </div>
+            <!-- search bar right align -->
+            <div class="search">
+                <form action="#" class="searchbar">
+                    <input type="text" placeholder="Search...." name="search">
+                </form>
+            </div>
+            <div class="nav-main-buttons">
+                <button style="font-size:12px"><i class="fa fa-sign-out"></i></button>
+                <span style="font-size:30px;cursor:pointer;color:#604cff;margin-right: 20px ;"
+                    onclick="openNav()">&#9776;</span>
+            </div>
         </nav>
     </header>

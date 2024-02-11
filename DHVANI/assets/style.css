@@ -217,3 +217,75 @@ button {
     font-size: 0.8em; /* Smaller font sizes for all text elements */
   }
 }
+
+/* ============================= Header ====================================*/
+
+.signout {
+  width: auto;
+}
+#navlist {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+}
+.logo img {
+  max-height: 50px;
+  width: auto;
+}
+#navlist a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.search input[type="text"] {
+  width: 300px;
+  height: 25px;
+  border-radius: 25px;
+  margin-top: 12px;
+  border: none;
+}
+
+.nav-main-buttons {
+  float: right;
+  display: flex;
+  justify-content: space-between;
+}
+.nav-main-buttons button {
+  margin: 15px 20px;
+  height: 20px;
+}
+.block1 {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
+@media (max-width: 768px) {
+  #navlist {
+    flex-direction: row;
+    text-align: center;
+  }
+
+  .block1,
+  .nav-main-buttons {
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  .search {
+    justify-content: center;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .search input[type="text"] {
+    width: 90%;
+  }
+}
