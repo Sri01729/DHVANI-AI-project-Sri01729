@@ -13,6 +13,19 @@
         </div>
     </div>
 
+    <div class="carousel-container">
+        <h2>New Releases</h2>
+        <div class="carousel">
+            <div class="card">
+                <div class="card-image"></div>
+                <div class="card-info">
+                    <p class="song-name">Song name</p>
+                    <p class="artist-name">Artist name</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </main>
 <div class="overlay"></div>
 <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.51/build/spline-viewer.js"></script>
