@@ -2,7 +2,7 @@
 
     <div class="hero-container">
         <div class="circle" id="circle1">
-            <h1>3&deg;C</h1>
+            <h1>Weather data loading</h1>
         </div>
         <div class="intro-text">
             <h1>DHVANI</h1>
