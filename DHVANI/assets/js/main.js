@@ -55,3 +55,26 @@ var swiper = new Swiper(".mySwiper", {
     },
 });
 
+//Finding the latitudes and longitudes of the device
+
+const temperature = document.getElementById("circle1");
+
+document.addEventListener("DOMContentLoaded", getLocation());
+
+function getLocation() {
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(latLongValues);
+    }
+}
+
+
+function latLongValues(position) {
+
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    // temperature.innerHTML = "Latitude: " + position.coords.latitude +
+    //     "<br>Longitude: " + position.coords.longitude;
+    console.log(`Latitude: ${lat}, Longitude: ${lon}`);
+}
+
