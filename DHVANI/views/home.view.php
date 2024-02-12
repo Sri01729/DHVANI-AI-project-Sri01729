@@ -15,22 +15,64 @@
 
     <div class="carousel-container">
         <h2>New Releases</h2>
-        <div class="carousel">
-            <div class="card">
-                <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
-                <div class="card-info">
-                    <p class="song-name">Song name</p>
-                    <p class="artist-name">Artist name</p>
+        <div class="carousel swiper mySwiper">
+            <div class="carousel-slides swiper-wrapper">
+                <div class="card swiper-slide">
+                    <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                    <div class="card-info">
+                        <p class="song-name">Song name</p>
+                        <p class="artist-name">Artist name</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="card">
-                <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
-                <div class="card-info">
-                    <p class="song-name">Song name</p>
-                    <p class="artist-name">Artist name</p>
+                <div class="card swiper-slide">
+                    <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                    <div class="card-info">
+                        <p class="song-name">Song name</p>
+                        <p class="artist-name">Artist name</p>
+                    </div>
+                </div>
+
+                <div class="card swiper-slide">
+                    <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                    <div class="card-info">
+                        <p class="song-name">Song name</p>
+                        <p class="artist-name">Artist name</p>
+                    </div>
+                </div>
+
+                <div class="card swiper-slide">
+                    <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                    <div class="card-info">
+                        <p class="song-name">Song name</p>
+                        <p class="artist-name">Artist name</p>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                    <div class="card-info">
+                        <p class="song-name">Song name</p>
+                        <p class="artist-name">Artist name</p>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                    <div class="card-info">
+                        <p class="song-name">Song name</p>
+                        <p class="artist-name">Artist name</p>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                    <div class="card-info">
+                        <p class="song-name">Song name</p>
+                        <p class="artist-name">Artist name</p>
+                    </div>
                 </div>
             </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
         </div>
     </div>
 
@@ -38,6 +80,7 @@
 <div class="overlay"></div>
 <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.51/build/spline-viewer.js"></script>
 <spline-viewer url="https://prod.spline.design/0uBxXIG6l8H5kzwi/scene.splinecode"></spline-viewer>
+<script src="/DHVANI/assets/js/main.js"></script>
 <script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
