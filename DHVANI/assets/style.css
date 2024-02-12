@@ -388,10 +388,11 @@ h2 {
     padding-top: 70px;
   }
 }
-/* ============================== Album carousel===================================*/
+/* ============================== Album carousel and artist carousel===================================*/
 .carousel-container {
   width: 100%;
   position: relative;
+  margin-top: 100px;
 }
 
 .card {

@@ -12,7 +12,7 @@
             <h1>Mood</h1>
         </div>
     </div>
-
+    <!-- New released songs carousel -->
     <div class="carousel-container">
         <h2>New Releases</h2>
         <div class="carousel swiper mySwiper">
@@ -75,7 +75,61 @@
             <div class="swiper-pagination"></div>
         </div>
     </div>
+    <!-- Artists carousel -->
+    <div class="carousel-container">
+        <h2>Artists</h2>
+        <div class="carousel swiper mySwiper">
+            <div class="carousel-slides swiper-wrapper">
+                <div class="card swiper-slide">
+                    <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                    <div class="card-info">
+                        <p class="artist-name">Artist name</p>
+                    </div>
+                </div>
 
+                <div class="card swiper-slide">
+                    <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                    <div class="card-info">
+                        <p class="artist-name">Artist name</p>
+                    </div>
+                </div>
+
+                <div class="card swiper-slide">
+                    <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                    <div class="card-info">
+                        <p class="artist-name">Artist name</p>
+                    </div>
+                </div>
+
+                <div class="card swiper-slide">
+                    <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                    <div class="card-info">
+                        <p class="artist-name">Artist name</p>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                    <div class="card-info">
+                        <p class="artist-name">Artist name</p>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                    <div class="card-info">
+                        <p class="artist-name">Artist name</p>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
+                    <div class="card-info">
+                        <p class="artist-name">Artist name</p>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
 </main>
 <div class="overlay"></div>
 <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.51/build/spline-viewer.js"></script>
