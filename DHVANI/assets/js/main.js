@@ -26,6 +26,7 @@
 //     }
 // }, { once: true });
 
+//Swiper script for carousel
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: 4,
     spaceBetween: 30,
@@ -37,4 +38,20 @@ var swiper = new Swiper(".mySwiper", {
         el: ".swiper-pagination",
         clickable: true,
     },
+    breakpoints: {
+
+        320: {
+            slidesPerView: 1,
+        },
+        480: {
+            slidesPerView: 2,
+        },
+        768: {
+            slidesPerView: 3,
+        },
+        1200: {
+            slidesPerView: 4,
+        },
+    },
 });
+
