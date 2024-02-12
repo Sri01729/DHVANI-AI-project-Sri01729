@@ -381,7 +381,13 @@ h2 {
   font-size: 24px;
   font-family: "Courier New", Courier, monospace;
 }
-
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .hero-container {
+    grid-template-columns: auto;
+    padding-top: 70px;
+  }
+}
 /* ============================== Album carousel===================================*/
 .carousel-container {
   width: 100%;
