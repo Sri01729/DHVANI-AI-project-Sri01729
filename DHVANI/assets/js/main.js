@@ -52,52 +52,6 @@ var swiper = new Swiper(".mySwiper", {
 });
 
 
-// music player functionality
-
-let progress = document.getElementById("progress");
-let song = document.getElementById("song");
-let songTitle = document.getElementById("song-name");
-let songDescription = document.getElementById("artist-name");
-let ctrlIcon = document.getElementById("ctrlIcon");
-
-song.onloadedmetadata = function () {
-
-    progress.max = song.duration;
-    progress.value = song.currentTime;
-}
-
-// Playing and pausing the son function
-function playPause() {
-
-    if (ctrlIcon.classList.contains("fa-pause")) {
-
-        song.pause();
-        ctrlIcon.classList.remove("fa-pause");
-        ctrlIcon.classList.add("fa-play");
-    }
-    else {
-
-        song.play();
-        ctrlIcon.classList.remove("fa-play");
-        ctrlIcon.classList.add("fa-pause");
-    }
-
-}
-
-//Progress bar functionality
-
-if (song.play()) {
-    setInterval(() => {
-        progress.value = song.currentTime;
-    }, 500);
-}
-
-
-
-
-
-
-
 /////////////////////////////////////////////    Fetching  weather    ///////////////////////////////////////////////////
 
 //Finding the latitudes and longitudes of the device
@@ -173,3 +127,62 @@ async function fetchWeather(lat, lon) {
     }
 
 }
+
+
+// music player functionality
+
+let progress = document.getElementById("progress");
+let song = document.getElementById("song");
+let songTitle = document.getElementById("song-name");
+let songDescription = document.getElementById("artist-name");
+let ctrlIcon = document.getElementById("ctrlIcon");
+
+song.onloadedmetadata = function () {
+
+    progress.max = song.duration;
+    progress.value = song.currentTime;
+}
+
+// Playing and pausing the song function
+ctrlIcon.addEventListener('click', function () {
+
+    if (ctrlIcon.classList.contains("fa-pause")) {
+
+        song.pause();
+        ctrlIcon.classList.remove("fa-pause");
+        ctrlIcon.classList.add("fa-play");
+    }
+    else {
+
+        song.play();
+        ctrlIcon.classList.remove("fa-play");
+        ctrlIcon.classList.add("fa-pause");
+    }
+
+})
+
+//Progress bar functionality
+
+
+if (song.play().then(() => {
+    // If playback was successful, set up an interval to update the progress bar.
+    setInterval(() => {
+        progress.value = song.currentTime;
+    }, 500);
+}).catch(error => {
+    // Handle error (e.g., playback was not allowed).
+    console.error("Playback failed: ", error);
+}));
+
+
+progress.oninput = function () {
+    song.currentTime = progress.value;
+    song.play().then(() => {
+        ctrlIcon.classList.add("fa-pause");
+        ctrlIcon.classList.remove("fa-play");
+    }).catch(error => {
+        console.error("Playback failed on seeking", error);
+    });
+
+}
+

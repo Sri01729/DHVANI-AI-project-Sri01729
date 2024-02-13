@@ -27,7 +27,7 @@
 
                 <div class="controls">
                     <div><i class="fa-solid fa-backward"></i></div>
-                    <div onclick="playPause()"><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
+                    <div><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
                     <div><i class="fa-solid fa-forward"></i></div>
                 </div>
             </div>
