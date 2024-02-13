@@ -19,20 +19,20 @@
                 <h1 id="song-name">Dangerous</h1>
                 <p id="artist-name">Michael jackson</p>
 
-                <audio controls>
-                    <source src="" type="audio/mpeg">
+                <audio controls id="song">
+                    <source src="/DHVANI/assets/audio/music-box-for-suspenseful-stories-158419.mp3" type="audio/mpeg">
                 </audio>
 
                 <input type="range" value="0" id="progress">
 
                 <div class="controls">
                     <div><i class="fa-solid fa-backward"></i></div>
-                    <div><i class="fa-solid fa-play" id="ctrl-icon"></i></div>
+                    <div onclick="playPause()"><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
                     <div><i class="fa-solid fa-forward"></i></div>
                 </div>
             </div>
         </div>
-        <div class=" intro-text">
+        <div class="intro-text">
             <h1>DHVANI</h1>
             <p>Tunes for the forecast</p>
         </div>
