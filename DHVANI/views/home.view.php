@@ -4,14 +4,37 @@
         <div class="circle" id="circle1">
             <h1>Weather data loading</h1>
         </div>
-        <div class="intro-text">
-            <h1>DHVANI</h1>
-            <p>Tunes for the forecast</p>
-        </div>
+
         <div class="player-container">
             <div class="music-player">
+                <nav class="player-nav">
+                    <div class="player-circle">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </div>
+                    <div class="player-circle">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </nav>
+                <img src="/DHVANI/assets/img/michael.png" alt="" class="song-img">
+                <h1 class="song-name">Dangerous</h1>
+                <p class="artist-name">Michael jackson</p>
 
+                <audio controls>
+                    <source src="" type="audio/mpeg">
+                </audio>
+
+                <input type="range" value="0" id="progress">
+
+                <div class="controls">
+                    <div><i class="fa-solid fa-backward"></i></div>
+                    <div><i class="fa-solid fa-play"></i></div>
+                    <div><i class="fa-solid fa-forward"></i></div>
+                </div>
             </div>
+        </div>
+        <div class=" intro-text">
+            <h1>DHVANI</h1>
+            <p>Tunes for the forecast</p>
         </div>
         <div class="circle" id="circle2">
             <h1>Mood</h1>
