@@ -51,6 +51,20 @@ var swiper = new Swiper(".mySwiper", {
     },
 });
 
+
+// music player functionality
+
+let progress
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////    Fetching  weather    ///////////////////////////////////////////////////
+
 //Finding the latitudes and longitudes of the device
 
 const weather = document.getElementById("circle1");
