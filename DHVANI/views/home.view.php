@@ -8,6 +8,11 @@
             <h1>DHVANI</h1>
             <p>Tunes for the forecast</p>
         </div>
+        <div class="player-container">
+            <div class="music-player">
+
+            </div>
+        </div>
         <div class="circle" id="circle2">
             <h1>Mood</h1>
         </div>
@@ -72,7 +77,6 @@
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
         </div>
     </div>
     <!-- Artists carousel -->

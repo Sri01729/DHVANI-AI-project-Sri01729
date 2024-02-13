@@ -34,10 +34,6 @@ var swiper = new Swiper(".mySwiper", {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
     },
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
     breakpoints: {
 
         320: {
@@ -120,7 +116,7 @@ async function fetchWeather(lat, lon) {
         console.log(`current temperature: ${currentTemperature}`);
         console.log(`current weather: ${weather}`);
 
-        weather.innerHTML = "<h1>" + currentTemperature + "&deg C<br>" + weatherData + "</h1>";
+        weather.innerHTML = "<h1>" + currentTemperature + "&degC" + "</h1>" + "<p>" + weatherData + "</p>";
 
     }
     catch (error) {
