@@ -66,6 +66,7 @@ song.onloadedmetadata = function () {
     progress.value = song.currentTime;
 }
 
+// Playing and pausing the son function
 function playPause() {
 
     if (ctrlIcon.classList.contains("fa-pause")) {
@@ -81,6 +82,14 @@ function playPause() {
         ctrlIcon.classList.add("fa-pause");
     }
 
+}
+
+//Progress bar functionality
+
+if (song.play()) {
+    setInterval(() => {
+        progress.value = song.currentTime;
+    }, 500);
 }
 
 
