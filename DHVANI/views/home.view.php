@@ -16,8 +16,8 @@
                     </div>
                 </nav>
                 <img src="/DHVANI/assets/img/michael.png" alt="" class="song-img">
-                <h1 class="song-name">Dangerous</h1>
-                <p class="artist-name">Michael jackson</p>
+                <h1 id="song-name">Dangerous</h1>
+                <p id="artist-name">Michael jackson</p>
 
                 <audio controls>
                     <source src="" type="audio/mpeg">
@@ -27,7 +27,7 @@
 
                 <div class="controls">
                     <div><i class="fa-solid fa-backward"></i></div>
-                    <div><i class="fa-solid fa-play"></i></div>
+                    <div><i class="fa-solid fa-play" id="ctrl-icon"></i></div>
                     <div><i class="fa-solid fa-forward"></i></div>
                 </div>
             </div>

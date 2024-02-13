@@ -54,7 +54,13 @@ var swiper = new Swiper(".mySwiper", {
 
 // music player functionality
 
-let progress
+let progress = document.getElementById("progress");
+let song = document.getElementById("song");
+let songTitle = document.getElementById("song-name");
+let songDescription = document.getElementById("artist-name");
+let ctrlIcon = document.getElementById("ctrl-icon");
+
+
 
 
 
