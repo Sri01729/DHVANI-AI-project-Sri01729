@@ -238,3 +238,11 @@ function classifyMusicMood(temperature, weatherType) {
     }
 }
 
+// Navigating through songs loop front to back
+
+document.getElementById('nextSong').addEventListener('click', function () {
+    window.location.href = '?action=next';
+});
+document.getElementById('prevSong').addEventListener('click', function () {
+    window.location.href = '?action=prev';
+});
