@@ -20,7 +20,8 @@
                 <p id="artist-name" style="color: aliceblue;">Michael jackson</p>
 
                 <audio id="song">
-                    <source src="/DHVANI/assets/audio/music-box-for-suspenseful-stories-158419.mp3" type="audio/mpeg">
+                    <source type="audio/mpeg" src="/DHVANI/assets/audio/calm/2019-04-06_-_Deep_Meditation_-_David_Fesliyan.mp3">
+                    <!-- src = "/path/examplesong.mp3" in above line -->
                 </audio>
 
                 <input type="range" value="0" id="progress">

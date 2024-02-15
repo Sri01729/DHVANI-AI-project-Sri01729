@@ -26,6 +26,7 @@
 //     }
 // }, { once: true });
 
+var currentMood;
 
 //Sidebar navigaation working functionality
 function openNav() {
@@ -136,7 +137,11 @@ async function fetchWeather(lat, lon) {
 
         weather.innerHTML = "<h1>" + currentTemperature + "&degC" + "</h1>" + "<p>" + weatherData + "</p>";
 
-        classifyMusicMood(currentTemperature, weatherData);
+        const mood = classifyMusicMood(currentTemperature, weatherData);
+
+        currentMood = mood;
+        console.log("Mood set to:", currentMood);
+
     }
     catch (error) {
         throw new Error("Failed to fetch data. Please check your network connection and try again.");
@@ -179,7 +184,6 @@ ctrlIcon.addEventListener('click', function () {
 
 //Progress bar functionality
 
-
 if (song.play().then(() => {
     // If playback was successful, set up an interval to update the progress bar.
     setInterval(() => {
@@ -191,16 +195,16 @@ if (song.play().then(() => {
 }));
 
 
-progress.oninput = function () {
-    song.currentTime = progress.value;
-    song.play().then(() => {
-        ctrlIcon.classList.add("fa-pause");
-        ctrlIcon.classList.remove("fa-play");
-    }).catch(error => {
-        console.error("Playback failed on seeking", error);
-    });
+// progress.oninput = function () {
+//     song.currentTime = progress.value;
+//     song.play().then(() => {
+//         ctrlIcon.classList.add("fa-pause");
+//         ctrlIcon.classList.remove("fa-play");
+//     }).catch(error => {
+//         console.error("Playback failed on seeking", error);
+//     });
 
-}
+// }
 
 /* ===========================Mood classification======================================*/
 
@@ -226,6 +230,7 @@ function classifyMusicMood(temperature, weatherType) {
     } else if (weatherType.includes('cloud') || weatherType.includes('fog')) {
         console.log('calm');
         circle2.innerHTML = "<h1>calm</h1>";
+        return 'calm';
 
     } else if (temperature >= 20 || (weatherType.includes('clear') || weatherType.includes('partly cloudy'))) {
         console.log('Happy');
@@ -240,9 +245,36 @@ function classifyMusicMood(temperature, weatherType) {
 
 // Navigating through songs loop front to back
 
+
+function updateSong(action) {
+    fetch(`/DHVANI/models/fetch_songs.php?action=${action}`)
+        .then(response => response.text())
+        .then(songPath => {
+            console.log(songPath);
+            console.log("Back from php function");
+            document.getElementById('source').src = songPath;
+            song.load();
+            song.play();
+        })
+        .catch(error => console.error('Error:', error));
+}
+
 document.getElementById('nextSong').addEventListener('click', function () {
-    window.location.href = '?action=next';
+    if (window.currentMood === 'calm') {
+        updateSong('next');
+        console.log('Next song loaded');
+        console.log('Mood is calm, so changing the song');
+    } else {
+        console.log('Mood is not calm, not changing song.');
+    }
 });
 document.getElementById('prevSong').addEventListener('click', function () {
-    window.location.href = '?action=prev';
+    if (window.currentMood === 'happy') {
+        updateSong('prev');
+        console.log('Prev song loaded');
+        console.log('Mood is happy, so changing the song');
+    } else {
+        console.log('Mood is not happy, not changing song.');
+        console.log(window.currentMood);
+    }
 });
