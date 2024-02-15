@@ -20,7 +20,7 @@
                 <p id="artist-name" style="color: aliceblue;">Michael jackson</p>
 
                 <audio id="song">
-                    <source type="audio/mpeg" src="/DHVANI/assets/audio/calm/2019-04-06_-_Deep_Meditation_-_David_Fesliyan.mp3">
+                    <source type="audio/mpeg" id="source" src="/DHVANI/assets/audio/calm/2019-04-06_-_Deep_Meditation_-_David_Fesliyan.mp3">
                     <!-- src = "/path/examplesong.mp3" in above line -->
                 </audio>
 
