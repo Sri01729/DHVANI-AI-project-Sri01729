@@ -260,12 +260,12 @@ function updateSong(action) {
 }
 
 document.getElementById('nextSong').addEventListener('click', function () {
-    if (window.currentMood === 'calm') {
+    if (window.currentMood === 'happy') {
         updateSong('next');
         console.log('Next song loaded');
-        console.log('Mood is calm, so changing the song');
+        console.log('Mood is happy, so changing the song');
     } else {
-        console.log('Mood is not calm, not changing song.');
+        console.log('Mood is not happy, not changing song.');
     }
 });
 document.getElementById('prevSong').addEventListener('click', function () {
