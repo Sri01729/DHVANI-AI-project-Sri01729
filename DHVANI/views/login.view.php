@@ -17,8 +17,7 @@
             <a href="/" class="logo">DHVANI</a>
             <div class="nav-buttons">
                 <button onclick="window.location.href='/DHVANI/views/login.view.php';" class="btn login">Login</button>
-                <button onclick="window.location.href='/DHVANI/views/signup.view.php';"
-                    class="btn signup">Signup</button>
+                <button onclick="window.location.href='/DHVANI/views/signup.view.php';" class="btn signup">Signup</button>
             </div>
         </nav>
     </header>

@@ -340,7 +340,7 @@ button {
   grid-template-columns: 30% 40% 30%;
   justify-content: space-around;
   align-items: center;
-  height: 100vh;
+  height: auto;
   background: transparent;
 }
 
@@ -398,6 +398,7 @@ h2 {
   width: 100%;
   position: relative;
   margin-top: 100px;
+  height: auto;
 }
 
 .card {
@@ -456,6 +457,11 @@ button.next {
   right: 0;
 }
 
+@media (max-width: 600px) {
+  .carousel-container {
+    margin-top: 50px; /* Adjust based on actual space needed */
+  }
+}
 /* ===============================Music player==================================*/
 
 .player-container {

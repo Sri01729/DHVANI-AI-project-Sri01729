@@ -26,6 +26,20 @@
 //     }
 // }, { once: true });
 
+
+//Sidebar navigaation working functionality
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("navlist").style.marginLeft = "250px";
+    document.getElementById("mySidenav").style.borderRight = "2px solid #604cff";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("navlist").style.marginLeft = "0";
+    document.getElementById("mySidenav").style.border = "none";
+}
+
 //Swiper script for carousel
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: 4,
@@ -57,6 +71,7 @@ var swiper = new Swiper(".mySwiper", {
 //Finding the latitudes and longitudes of the device
 
 const weather = document.getElementById("circle1");
+const mood = document.getElementById("circle2");
 
 document.addEventListener("DOMContentLoaded", getLocation());
 
@@ -117,10 +132,11 @@ async function fetchWeather(lat, lon) {
         //Extract the weather data like rain, snow etc.,
         const weatherData = forecastData.weather[0].description;
         console.log(`current temperature: ${currentTemperature}`);
-        console.log(`current weather: ${weather}`);
+        console.log(`current weather: ${weatherData}`);
 
         weather.innerHTML = "<h1>" + currentTemperature + "&degC" + "</h1>" + "<p>" + weatherData + "</p>";
 
+        classifyMusicMood(currentTemperature, weatherData);
     }
     catch (error) {
         throw new Error("Failed to fetch data. Please check your network connection and try again.");
@@ -184,5 +200,41 @@ progress.oninput = function () {
         console.error("Playback failed on seeking", error);
     });
 
+}
+
+/* ===========================Mood classification======================================*/
+
+function classifyMusicMood(temperature, weatherType) {
+    if (weatherType.includes('sun')) {
+        if (temperature > 25) {
+            return 'happy';
+        } else if (temperature > 15) {
+            return 'energetic';
+        } else {
+            return 'calm';
+        }
+    } else if (weatherType.includes('rain')) {
+        if (temperature < 10) {
+            return 'sad';
+        } else {
+            return 'calm';
+        }
+    } else if (weatherType.includes('snow')) {
+        return 'calm';
+    } else if (weatherType.includes('overcast')) {
+        return 'sad';
+    } else if (weatherType.includes('cloud') || weatherType.includes('fog')) {
+        console.log('calm');
+        circle2.innerHTML = "<h1>calm</h1>";
+
+    } else if (temperature >= 20 || (weatherType.includes('clear') || weatherType.includes('partly cloudy'))) {
+        console.log('Happy');
+        circle2.innerHTML = "<h1>Happy 😄</h1>";
+        return 'happy';
+
+    } else {
+        // Default mood for any other conditions
+        return 'energetic';
+    }
 }
 
