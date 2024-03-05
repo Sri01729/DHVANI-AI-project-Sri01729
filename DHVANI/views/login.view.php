@@ -17,7 +17,8 @@
             <a href="/" class="logo">DHVANI</a>
             <div class="nav-buttons">
                 <button onclick="window.location.href='/DHVANI/views/login.view.php';" class="btn login">Login</button>
-                <button onclick="window.location.href='/DHVANI/views/signup.view.php';" class="btn signup">Signup</button>
+                <button onclick="window.location.href='/DHVANI/views/signup.view.php';"
+                    class="btn signup">Signup</button>
             </div>
         </nav>
     </header>
@@ -25,27 +26,32 @@
 
         <div class="form-box">
             <div class="form-value">
-                <form action="">
+                <div class="form-heading">
                     <h2>Login</h2>
+                </div>
+                <form action="../models/login_authentication.php" method="POST">
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" required>
+                        <input type="email" name="email" required>
                         <label for="">Email</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" required>
+                        <input type="password" name="password" required>
                         <label for="">Password</label>
                     </div>
-                    <div class="forget">
-                        <label><input type="checkbox">Remember Me</label>
-                        <a href="#">Forget password?</a>
+                    <div class="login-button">
+                        <div class="forget">
+                            <label><input type="checkbox">Remember Me</label>
+                            <a href="#">Forget password?</a>
 
+                        </div>
+                        <button>Log in</button>
+                        <div class="register">
+                            <label>Don't have an account?</label>
+                            <a href="/DHVANI/views/signup.view.php"> Register</a>
+                        </div>
                     </div>
-                    <button>Log in</button>
-                    <div class="register">
-                        <label>Don't have an account?</label>
-                        <a href="/DHVANI/views/signup.view.php"> Register</a>
                 </form>
             </div>
         </div>

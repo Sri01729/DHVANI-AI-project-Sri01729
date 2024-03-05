@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/3a1fd0a5ce.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.0.0"></script>
     <link rel="stylesheet" href="/DHVANI/assets/style.css">
 </head>
 
@@ -43,7 +44,8 @@
             </form>
         </div>
         <div class="nav-main-buttons">
-            <button style="font-size:12px"><i class="fa fa-sign-out"></i></button>
+            <button style="font-size:12px" onclick="window.location.href='/DHVANI/controllers/login.php';"><i
+                    class="fa fa-sign-out"></i></button>
             <span style="font-size:40px;cursor:pointer;color:#604cff;margin-right: 20px ;"
                 onclick="openNav()">&#9776;</span>
         </div>

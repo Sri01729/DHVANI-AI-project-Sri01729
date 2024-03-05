@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@magenta/music": "^1.23.1",
+    "puppeteer": "^22.3.0",
+    "puppeteer-extra": "^3.3.6",
+    "yarn": "^1.22.21"
+  }
+}

@@ -23,23 +23,25 @@
         </nav>
     </header>
     <section>
-        <div class="form-box">
+        <div class="form-box" style="height:470px;">
             <div class="form-value">
-                <form action="">
-                    <h2>Signup</h2>
+                <div class="form-heading">
+                    <h2>Sign up</h2>
+                </div>
+                <form action="../models/signup_register.php" method="POST">
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="name" required>
+                        <input type="name" name="name" required>
                         <label for="">Name</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" required>
+                        <input type="email" name="email" required>
                         <label for="">Email</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" required>
+                        <input type="password" name="password" required>
                         <label for="">Password</label>
                     </div>
                     <div class="forget">

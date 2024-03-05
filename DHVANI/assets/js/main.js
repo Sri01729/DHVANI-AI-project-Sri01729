@@ -26,6 +26,7 @@
 //     }
 // }, { once: true });
 
+
 var currentMood;
 
 //Sidebar navigaation working functionality
@@ -65,6 +66,65 @@ var swiper = new Swiper(".mySwiper", {
         },
     },
 });
+
+////////////////////////////////////////////////////////////////Mood button //////////////////////////////////////////////////////////////////
+
+// const moods = ['Energetic', 'Calm', 'Anger', 'Sad', 'Happy']; // The list of moods
+// let currentIndex = 0; // Starting index
+// const scrollArea = document.getElementById('scrollArea');
+// let startY;
+// let isDragging = false;
+
+// // Add a transition for smooth scrolling
+// scrollArea.style.transition = 'transform 0.3s ease-out';
+
+// // Function to update the mood and animate
+// function updateMood(newIndex) {
+//     const height = scrollArea.offsetHeight;
+//     const offset = (currentIndex - newIndex) * height;
+//     scrollArea.style.transform = `translateY(${offset}px)`;
+
+//     setTimeout(() => {
+//         scrollArea.classList.remove('animated');
+//         scrollArea.style.transform = '';
+//         scrollArea.innerText = moods[newIndex];
+//         currentIndex = newIndex;
+//     }, 300); // The timeout should match the CSS transition time
+// }
+
+// scrollArea.addEventListener('mousedown', (event) => {
+//     startY = event.clientY;
+//     isDragging = true;
+//     // Disable the transition when starting to drag for instant response
+//     scrollArea.style.transition = '';
+//     event.preventDefault();
+// });
+
+// document.addEventListener('mousemove', (event) => {
+//     if (isDragging) {
+//         const currentY = event.clientY;
+//         const diffY = currentY - startY;
+//         scrollArea.style.transform = `translateY(${diffY}px)`;
+//     }
+// });
+
+// document.addEventListener('mouseup', (event) => {
+//     if (isDragging) {
+//         const endY = event.clientY;
+//         isDragging = false;
+//         // Re-enable the transition for the smooth animation effect
+//         scrollArea.style.transition = 'transform 0.3s ease-out';
+
+//         // Determine direction and update mood
+//         if (endY - startY > 0) {
+//             updateMood((currentIndex + 1) % moods.length);
+//         } else {
+//             updateMood((currentIndex - 1 + moods.length) % moods.length);
+//         }
+//     }
+// });
+
+
 
 
 /////////////////////////////////////////////    Fetching  weather    ///////////////////////////////////////////////////
@@ -127,15 +187,38 @@ async function fetchWeather(lat, lon) {
 
         console.log(forecastData);
 
-        // Extract the current temperature data
-        const currentTemperature = Math.round(forecastData.main.temp_max) + 1;
+        let locationIcon = document.querySelector('.weather-icon');
+        let value = document.querySelector('.default-value');
 
-        //Extract the weather data like rain, snow etc.,
-        const weatherData = forecastData.weather[0].description;
-        console.log(`current temperature: ${currentTemperature}`);
-        console.log(`current weather: ${weatherData}`);
+        // Clear any existing icons and default text
+        locationIcon.innerHTML = '';
+        value.innerHTML = '';
 
-        weather.innerHTML = "<h1>" + currentTemperature + "&degC" + "</h1>" + "<p>" + weatherData + "</p>";
+        let weatherData, icon;
+
+        if (forecastData.weather.length > 0) {
+            // Assuming you want the last weather condition
+            const lastCondition = forecastData.weather[forecastData.weather.length - 1];
+            weatherData = lastCondition.description;
+            icon = lastCondition.icon;
+            console.log("Weather conditions count: " + forecastData.weather.length);
+        }
+
+        // Extract and round the current temperature data
+        const currentTemperature = Math.round(forecastData.main.feels_like);
+
+        // Now set the innerHTML for both icon and value
+        if (weatherData && icon) { // Ensure these are defined
+            locationIcon.innerHTML = `<img src="assets/img/icons/${icon}.png" alt="${weatherData}">`;
+            value.innerHTML = weatherData;
+        }
+
+        console.log(`Current temperature: ${currentTemperature}°C`);
+        console.log(`Current weather: ${weatherData}`);
+
+
+
+        // weather.innerHTML = "<h1>" + currentTemperature + "&degC" + "</h1>" + "<p>" + weatherData + "</p>";
 
         const mood = classifyMusicMood(currentTemperature, weatherData);
 
@@ -182,17 +265,17 @@ ctrlIcon.addEventListener('click', function () {
 
 })
 
-//Progress bar functionality
+// //Progress bar functionality
 
-if (song.play().then(() => {
-    // If playback was successful, set up an interval to update the progress bar.
-    setInterval(() => {
-        progress.value = song.currentTime;
-    }, 500);
-}).catch(error => {
-    // Handle error (e.g., playback was not allowed).
-    console.error("Playback failed: ", error);
-}));
+// if (song.play().then(() => {
+//     // If playback was successful, set up an interval to update the progress bar.
+//     setInterval(() => {
+//         progress.value = song.currentTime;
+//     }, 500);
+// }).catch(error => {
+//     // Handle error (e.g., playback was not allowed).
+//     console.error("Playback failed: ", error);
+// }));
 
 
 // progress.oninput = function () {
@@ -260,12 +343,12 @@ function updateSong(action) {
 }
 
 document.getElementById('nextSong').addEventListener('click', function () {
-    if (window.currentMood === 'happy') {
+    if (window.currentMood === 'calm') {
         updateSong('next');
         console.log('Next song loaded');
-        console.log('Mood is happy, so changing the song');
+        console.log('Mood is calm, so changing the song');
     } else {
-        console.log('Mood is not happy, not changing song.');
+        console.log('Mood is not calm, not changing song.');
     }
 });
 document.getElementById('prevSong').addEventListener('click', function () {
@@ -278,3 +361,5 @@ document.getElementById('prevSong').addEventListener('click', function () {
         console.log(window.currentMood);
     }
 });
+
+
