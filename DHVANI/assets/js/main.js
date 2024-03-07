@@ -28,6 +28,7 @@
 
 
 var currentMood;
+let selectedMood = '';
 
 //Sidebar navigaation working functionality
 function openNav() {
@@ -131,8 +132,7 @@ var swiper = new Swiper(".mySwiper", {
 
 //Finding the latitudes and longitudes of the device
 
-const weather = document.getElementById("circle1");
-const mood = document.getElementById("circle2");
+
 
 document.addEventListener("DOMContentLoaded", getLocation());
 
@@ -189,6 +189,24 @@ async function fetchWeather(lat, lon) {
 
         let locationIcon = document.querySelector('.weather-icon');
         let value = document.querySelector('.default-value');
+        let city = document.querySelector('.city');
+        let minTemp = document.querySelector('.minTemp');
+        let maxTemp = document.querySelector('.maxTemp');
+        let temp = document.querySelector('.temp');
+
+        //city name
+        const cityName = forecastData.name;
+        city.innerHTML = cityName;
+
+        //min and max temp
+        const tempMin = forecastData.main.temp_min;
+        const tempMax = forecastData.main.temp_max;
+
+        console.log(tempMin, tempMax);
+
+        //Temp assign
+        minTemp.innerHTML = tempMin;
+        maxTemp.innerHTML = tempMax;
 
         // Clear any existing icons and default text
         locationIcon.innerHTML = '';
@@ -205,7 +223,8 @@ async function fetchWeather(lat, lon) {
         }
 
         // Extract and round the current temperature data
-        const currentTemperature = Math.round(forecastData.main.feels_like);
+        const currentTemperature = Math.round(forecastData.main.temp);
+        temp.innerHTML = currentTemperature + "&deg";
 
         // Now set the innerHTML for both icon and value
         if (weatherData && icon) { // Ensure these are defined
@@ -216,9 +235,6 @@ async function fetchWeather(lat, lon) {
         console.log(`Current temperature: ${currentTemperature}°C`);
         console.log(`Current weather: ${weatherData}`);
 
-
-
-        // weather.innerHTML = "<h1>" + currentTemperature + "&degC" + "</h1>" + "<p>" + weatherData + "</p>";
 
         const mood = classifyMusicMood(currentTemperature, weatherData);
 
@@ -328,9 +344,15 @@ function classifyMusicMood(temperature, weatherType) {
 
 // Navigating through songs loop front to back
 
-
-function updateSong(action) {
-    fetch(`/DHVANI/models/fetch_songs.php?action=${action}`)
+// Sending action
+function updateSong(action, selectedMood) {
+    fetch(`/DHVANI/models/fetch_songs.php`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `action=${action}&mood=${selectedMood}`
+    })
         .then(response => response.text())
         .then(songPath => {
             console.log(songPath);
@@ -342,24 +364,82 @@ function updateSong(action) {
         .catch(error => console.error('Error:', error));
 }
 
-document.getElementById('nextSong').addEventListener('click', function () {
-    if (window.currentMood === 'calm') {
-        updateSong('next');
-        console.log('Next song loaded');
-        console.log('Mood is calm, so changing the song');
-    } else {
-        console.log('Mood is not calm, not changing song.');
+// Sending mood
+function updateMood(mood) {
+    fetch(`/DHVANI/models/fetch_songs.php`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `mood=${mood}`
+    })
+        .then(response => response.text())
+        .then(songPath => {
+            console.log(songPath);
+            console.log("Back from php function");
+            document.getElementById('source').src = songPath;
+            song.load();
+            song.play();
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+
+///////////////////////////////// Mood selection button///////////////////////////////////////
+
+document.querySelectorAll('input[name="switch"]').forEach(radio => {
+
+    radio.addEventListener('click', function () {
+
+        selectedMood = this.value;
+        fetchSongByMood(selectedMood);
+    });
+});
+
+
+function fetchSongByMood(mood) {
+    // fetching a song based on mood from a database
+    console.log(`Fetching song for mood: ${mood}`);
+
+    // Example:
+    switch (mood) {
+        case 'happy':
+            console.log('Playing Happy Song');
+            updateMood('happy');
+            break;
+        case 'sad':
+            console.log('Playing Sad Song');
+            updateMood('sad');
+            break;
+        case 'calm':
+            console.log('Playing calm Song');
+            updateMood('calm');
+            break;
+        case 'anger':
+            console.log('Playing anger Song');
+            updateMood('anger');
+            break;
+        case 'surprise':
+            console.log('Playing surprise Song');
+            updateMood('surprise');
+            break;
+        default:
+            console.log('Mood not recognized');
     }
+}
+
+// Selecting next and previous songs
+document.getElementById('nextSong').addEventListener('click', function () {
+
+    updateSong('next', selectedMood);
+    console.log('Next song loaded');
+    console.log('Mood is calm, so changing the song');
+
 });
 document.getElementById('prevSong').addEventListener('click', function () {
-    if (window.currentMood === 'happy') {
-        updateSong('prev');
-        console.log('Prev song loaded');
-        console.log('Mood is happy, so changing the song');
-    } else {
-        console.log('Mood is not happy, not changing song.');
-        console.log(window.currentMood);
-    }
+
+    updateSong('prev', selectedMood);
+    console.log('Prev song loaded');
+    console.log('Mood is happy, so changing the song');
+
 });
-
-

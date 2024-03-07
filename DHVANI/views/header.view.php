@@ -46,7 +46,12 @@
         <div class="nav-main-buttons">
             <button style="font-size:12px" onclick="window.location.href='/DHVANI/controllers/login.php';"><i
                     class="fa fa-sign-out"></i></button>
-            <span style="font-size:40px;cursor:pointer;color:#604cff;margin-right: 20px ;"
+            <span style="font-size:40px;cursor:pointer;color:white;margin-right: 20px ;"
                 onclick="openNav()">&#9776;</span>
         </div>
     </nav>
+    <ul>
+        <li><a href="http://43folderstech.net">Mood</a></li>
+        <li><a href="http://www.43folderstech.net/services/">Weather</a></li>
+        <li><a href="http://www.43folderstech.net/contact/">Location</a></li>
+    </ul>
