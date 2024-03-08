@@ -23,7 +23,7 @@ $tableName = ""; // Initialize tableName
 // Check if mood is set in POST request and validate it
 if (isset($_POST['mood'])) {
     $mood = $_POST['mood'];
-    $allowedMoods = ['happy', 'sad', 'calm']; // Define allowed moods
+    $allowedMoods = ['happy', 'sad', 'calm', 'anger', 'surprise']; // Define allowed moods
 
     if (in_array($mood, $allowedMoods)) {
         $tableName = "{$mood}_songs"; // This will dynamically change the table name based on the validated mood
@@ -47,16 +47,23 @@ if (isset($_POST['mood'])) {
         }
 
         // Fetch the current song based on songIndex and the mood-based tableName
-        $sql = "SELECT path FROM $tableName LIMIT 1 OFFSET " . $_SESSION['songIndex'];
+        // $sql = "SELECT path FROM $tableName LIMIT 1 OFFSET " . $_SESSION['songIndex'];
+        $sql = "SELECT id, title, genre, artist, path FROM $tableName LIMIT 1 OFFSET " . $_SESSION['songIndex'];
+
         $result = $pdo->prepare($sql);
+
         if (!$result->execute()) {
             die("Failed to fetch the song.");
         }
 
         $rows = $result->fetchAll(PDO::FETCH_ASSOC);
         if (count($rows) > 0) {
-            $songPath = $rows[0]["path"];
-            echo $songPath;
+            $song = $rows[0];
+    // Concatenate song details into a string separated by a unique delimiter, for example, "|"
+    $songDetails = $song["id"] . "|" . $song["title"] . "|" . $song["genre"] . "|" . $song["artist"] . "|" . $song["path"];
+
+    // Send the concatenated string as plain text
+    echo $songDetails;
         } else {
             echo "No songs found.";
         }
@@ -67,3 +74,4 @@ if (isset($_POST['mood'])) {
 } else {
     die("Mood not provided in POST request.");
 }
+

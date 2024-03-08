@@ -6,10 +6,10 @@
                 <div class="music-player">
 
                     <img src="/DHVANI/assets/img/michael.png" alt="" class="song-img">
-                    <h1 id="song-name">Dangerous</h1>
+                    <h3 id="song-name">Dangerous</h3>
                     <p id="artist-name">Michael jackson</p>
 
-                    <audio id="song">
+                    <audio id="song" preload="metadata">
                         <source type="audio/mpeg" id="source"
                             src="/DHVANI/assets/audio/calm/2019-04-06_-_Deep_Meditation_-_David_Fesliyan.mp3">
                         <!-- src = "/path/examplesong.mp3" in above line -->
@@ -113,7 +113,7 @@
                                 <label for="switch_5"><span>Surprise</span></label>
 
 
-                                <input type="radio" checked="" name="switch" id="switch_off">
+                                <input type="radio" checked="" name="switch" value="off" id="switch_off">
                                 <input type="radio" name="switch" value="happy" id="switch_1">
                                 <input type="radio" name="switch" value="sad" id="switch_2">
                                 <input type="radio" name="switch" value="calm" id="switch_3">

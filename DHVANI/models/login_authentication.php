@@ -8,9 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // set the user's email in a session variable
-    $_SESSION['user_email'] = $email;
-
     // Authenticate the user against the database
     $query = $pdo->prepare("SELECT * FROM users WHERE email = ?");
     $query->bindParam(1, $email);
@@ -35,9 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $existingEmail = $checkQuery->fetchColumn();
             if ($existingEmail) {
                 echo '<script type="text/javascript">';
-echo 'window.location.href = "../Controllers/loading.php";'; // Redirect to the loading page first
- // Wait for 5000 milliseconds (5 seconds) before redirecting
-echo '</script>';
+                echo 'window.location.href = "../Controllers/loading.php";';
+                echo '</script>';
 
                 exit();
              }
@@ -56,7 +52,10 @@ echo '</script>';
                 // exit();
             // }
         } else {
-            echo "<h2>Invalid email or passsword<h2>";
+            echo '<script type="text/javascript">';
+        echo 'alert("Invalid email address or password, Click OK to try again.");';
+        echo 'window.location.href = "../controllers/login.php";';
+        echo '</script>';
         }
     } else {
         echo '<script type="text/javascript">';

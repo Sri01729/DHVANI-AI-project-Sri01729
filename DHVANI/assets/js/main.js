@@ -1,34 +1,11 @@
-// //Lazy loading function
-// window.addEventListener('load', function () {
-//     var header = document.querySelector('.introHeader');
-//     var introSection = document.querySelector('.intro');
-//     if (header) {
-//         header.style.visibility = 'visible';
-//     }
-//     if (introSection) {
-//         introSection.style.visibility = 'visible';
-//     }
-// });
 
-// // Hero intro transistion function
-// window.addEventListener('click', function () {
-
-//     var introSection = document.querySelector('.intro');
-//     if (introSection) {
-//         introSection.style.opacity = '1';
-//         introSection.style.pointerEvents = 'all';
-//         introSection.style.transition = 'opacity 1s ease';
-//     }
-//     var header = document.querySelector('header');
-//     if (header) {
-//         header.style.opacity = '1';
-//         header.style.pointerEvents = 'all';
-//     }
-// }, { once: true });
 
 
 var currentMood;
 let selectedMood = '';
+let currentSongIndex = 0;
+var locationName = "Initial Location";
+let updateProgress;
 
 //Sidebar navigaation working functionality
 function openNav() {
@@ -68,71 +45,10 @@ var swiper = new Swiper(".mySwiper", {
     },
 });
 
-////////////////////////////////////////////////////////////////Mood button //////////////////////////////////////////////////////////////////
-
-// const moods = ['Energetic', 'Calm', 'Anger', 'Sad', 'Happy']; // The list of moods
-// let currentIndex = 0; // Starting index
-// const scrollArea = document.getElementById('scrollArea');
-// let startY;
-// let isDragging = false;
-
-// // Add a transition for smooth scrolling
-// scrollArea.style.transition = 'transform 0.3s ease-out';
-
-// // Function to update the mood and animate
-// function updateMood(newIndex) {
-//     const height = scrollArea.offsetHeight;
-//     const offset = (currentIndex - newIndex) * height;
-//     scrollArea.style.transform = `translateY(${offset}px)`;
-
-//     setTimeout(() => {
-//         scrollArea.classList.remove('animated');
-//         scrollArea.style.transform = '';
-//         scrollArea.innerText = moods[newIndex];
-//         currentIndex = newIndex;
-//     }, 300); // The timeout should match the CSS transition time
-// }
-
-// scrollArea.addEventListener('mousedown', (event) => {
-//     startY = event.clientY;
-//     isDragging = true;
-//     // Disable the transition when starting to drag for instant response
-//     scrollArea.style.transition = '';
-//     event.preventDefault();
-// });
-
-// document.addEventListener('mousemove', (event) => {
-//     if (isDragging) {
-//         const currentY = event.clientY;
-//         const diffY = currentY - startY;
-//         scrollArea.style.transform = `translateY(${diffY}px)`;
-//     }
-// });
-
-// document.addEventListener('mouseup', (event) => {
-//     if (isDragging) {
-//         const endY = event.clientY;
-//         isDragging = false;
-//         // Re-enable the transition for the smooth animation effect
-//         scrollArea.style.transition = 'transform 0.3s ease-out';
-
-//         // Determine direction and update mood
-//         if (endY - startY > 0) {
-//             updateMood((currentIndex + 1) % moods.length);
-//         } else {
-//             updateMood((currentIndex - 1 + moods.length) % moods.length);
-//         }
-//     }
-// });
-
-
-
 
 /////////////////////////////////////////////    Fetching  weather    ///////////////////////////////////////////////////
 
 //Finding the latitudes and longitudes of the device
-
-
 
 document.addEventListener("DOMContentLoaded", getLocation());
 
@@ -148,8 +64,6 @@ function latLongValues(position) {
 
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
-    // temperature.innerHTML = "Latitude: " + position.coords.latitude +
-    //     "<br>Longitude: " + position.coords.longitude;
     console.log(`Latitude: ${lat}, Longitude: ${lon}`);
     fetchWeather(lat, lon);
 }
@@ -196,6 +110,9 @@ async function fetchWeather(lat, lon) {
 
         //city name
         const cityName = forecastData.name;
+        locationName = cityName;
+        console.log(locationName);
+
         city.innerHTML = cityName;
 
         //min and max temp
@@ -213,6 +130,7 @@ async function fetchWeather(lat, lon) {
         value.innerHTML = '';
 
         let weatherData, icon;
+
 
         if (forecastData.weather.length > 0) {
             // Assuming you want the last weather condition
@@ -257,53 +175,68 @@ let songTitle = document.getElementById("song-name");
 let songDescription = document.getElementById("artist-name");
 let ctrlIcon = document.getElementById("ctrlIcon");
 
+// Set max value of progress bar to song duration once metadata is loaded
 song.onloadedmetadata = function () {
-
     progress.max = song.duration;
-    progress.value = song.currentTime;
-}
+};
 
-// Playing and pausing the song function
-ctrlIcon.addEventListener('click', function () {
+ctrlIcon.addEventListener("click", function () {
 
-    if (ctrlIcon.classList.contains("fa-pause")) {
 
+    if (ctrlIcon.classList.contains("fa-play")) {
+        song.play().then(() => {
+            // Successful playback
+            ctrlIcon.classList.remove("fa-play");
+            ctrlIcon.classList.add("fa-pause");
+        }).catch(error => {
+            console.error("Playback failed: ", error);
+        });
+    } else if (ctrlIcon.classList.contains("fa-pause")) {
         song.pause();
         ctrlIcon.classList.remove("fa-pause");
         ctrlIcon.classList.add("fa-play");
     }
-    else {
 
-        song.play();
-        ctrlIcon.classList.remove("fa-play");
-        ctrlIcon.classList.add("fa-pause");
+});
+
+
+
+song.addEventListener('play', () => {
+    // Update progress bar as song plays
+    updateProgress = setInterval(() => {
+        progress.value = song.currentTime;
+    }, 1); // Update every 500ms
+});
+
+song.addEventListener('pause', () => {
+    clearInterval(updateProgress); // Stop updating progress when paused
+});
+
+song.addEventListener('ended', () => {
+    clearInterval(updateProgress); // Stop updating progress when song ends
+    progress.value = 0; // Reset progress bar when song ends
+    // Update control icon to 'play' if necessary
+    currentSongIndex++;
+    fetchNextSongAndPlay(currentSongIndex);
+});
+
+// Seeking functionality
+progress.addEventListener('input', () => {
+    song.currentTime = progress.value;
+    if (song.paused) {
+        song.play().then(() => {
+            ctrlIcon.classList.add("fa-pause");
+            ctrlIcon.classList.remove("fa-play");
+        }).catch(error => {
+            console.error("Playback failed on seeking", error);
+        });
     }
+});
 
-})
-
-// //Progress bar functionality
-
-// if (song.play().then(() => {
-//     // If playback was successful, set up an interval to update the progress bar.
-//     setInterval(() => {
-//         progress.value = song.currentTime;
-//     }, 500);
-// }).catch(error => {
-//     // Handle error (e.g., playback was not allowed).
-//     console.error("Playback failed: ", error);
-// }));
-
-
-// progress.oninput = function () {
-//     song.currentTime = progress.value;
-//     song.play().then(() => {
-//         ctrlIcon.classList.add("fa-pause");
-//         ctrlIcon.classList.remove("fa-play");
-//     }).catch(error => {
-//         console.error("Playback failed on seeking", error);
-//     });
-
-// }
+function updatePlayButton() {
+    ctrlIcon.classList.remove("fa-play");
+    ctrlIcon.classList.add("fa-pause");
+}
 
 /* ===========================Mood classification======================================*/
 
@@ -344,7 +277,7 @@ function classifyMusicMood(temperature, weatherType) {
 
 // Navigating through songs loop front to back
 
-// Sending action
+// Sending action and selected mood
 function updateSong(action, selectedMood) {
     fetch(`/DHVANI/models/fetch_songs.php`, {
         method: 'POST',
@@ -354,12 +287,33 @@ function updateSong(action, selectedMood) {
         body: `action=${action}&mood=${selectedMood}`
     })
         .then(response => response.text())
-        .then(songPath => {
-            console.log(songPath);
-            console.log("Back from php function");
-            document.getElementById('source').src = songPath;
-            song.load();
-            song.play();
+        .then(text => {
+            if (text !== "No songs found.") {
+                songPlay(text);
+            } else {
+                console.error(text); // Handle the case where no songs were found
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Sending location name
+
+function sendLocation(location) {
+    fetch(`/DHVANI/models/send_location.php`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `locationName=${location}`
+    })
+        .then(response => response.text())
+        .then(text => {
+            if (text !== "No songs found.") {
+                console.log(text);
+            } else {
+                console.error(text); // Handle the case where no songs were found
+            }
         })
         .catch(error => console.error('Error:', error));
 }
@@ -374,16 +328,34 @@ function updateMood(mood) {
         body: `mood=${mood}`
     })
         .then(response => response.text())
-        .then(songPath => {
-            console.log(songPath);
-            console.log("Back from php function");
-            document.getElementById('source').src = songPath;
-            song.load();
-            song.play();
+        .then(text => {
+            if (text !== "No songs found.") {
+                songPlay(text);
+            } else {
+                console.error(text); // Handle the case where no songs were found
+            }
         })
         .catch(error => console.error('Error:', error));
 }
 
+// autmatic next songplay
+function fetchNextSongAndPlay(index) {
+    // Example fetch request to your server to get the next song
+    // Adjust URL and parameters as needed for your backend implementation
+    fetch(`/DHVANI/models/fetch_songs.php?songIndex=${index}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.songPath) {
+                // Assuming `data.songPath` is the URL to the next song
+                song.src = data.songPath;
+                song.play();
+            } else {
+                console.log("No more songs or error fetching the next song");
+                // Optionally reset currentSongIndex or handle the end of playlist
+            }
+        })
+        .catch(error => console.error('Error fetching next song:', error));
+}
 
 ///////////////////////////////// Mood selection button///////////////////////////////////////
 
@@ -392,11 +364,12 @@ document.querySelectorAll('input[name="switch"]').forEach(radio => {
     radio.addEventListener('click', function () {
 
         selectedMood = this.value;
+        updatePlayButton();
         fetchSongByMood(selectedMood);
     });
 });
 
-
+// Mood selection button and sending value to the mood function
 function fetchSongByMood(mood) {
     // fetching a song based on mood from a database
     console.log(`Fetching song for mood: ${mood}`);
@@ -423,6 +396,10 @@ function fetchSongByMood(mood) {
             console.log('Playing surprise Song');
             updateMood('surprise');
             break;
+        case 'off':
+            console.log('Stop the playing song');
+            song.pause();
+            break;
         default:
             console.log('Mood not recognized');
     }
@@ -431,6 +408,7 @@ function fetchSongByMood(mood) {
 // Selecting next and previous songs
 document.getElementById('nextSong').addEventListener('click', function () {
 
+    updatePlayButton();
     updateSong('next', selectedMood);
     console.log('Next song loaded');
     console.log('Mood is calm, so changing the song');
@@ -438,8 +416,36 @@ document.getElementById('nextSong').addEventListener('click', function () {
 });
 document.getElementById('prevSong').addEventListener('click', function () {
 
+    updatePlayButton();
     updateSong('prev', selectedMood);
     console.log('Prev song loaded');
     console.log('Mood is happy, so changing the song');
 
 });
+
+document.getElementById('checkbox').addEventListener('click', function () {
+
+    sendLocation(locationName);
+
+});
+
+
+function songPlay(text) {
+    console.log(typeof text);
+    const details = text.split("|");
+
+    // the order is id, name, genre, author, path
+    const songId = details[0];
+    const songName = details[1];
+    const songGenre = details[2];
+    const songAuthor = details[3];
+    const songPath = details[4];
+
+    document.getElementById('source').src = songPath;
+    document.getElementById('song-name').innerHTML = songName;
+    document.getElementById('artist-name').innerHTML = songAuthor;
+    console.log(`ID: ${songId},\n Name: ${songName},\n Genre: ${songGenre},\n Author: ${songAuthor},\n Path: ${songPath}`);
+
+    song.load();
+    song.play();
+}

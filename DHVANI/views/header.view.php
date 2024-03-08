@@ -51,7 +51,8 @@
         </div>
     </nav>
     <ul>
-        <li><a href="http://43folderstech.net">Mood</a></li>
-        <li><a href="http://www.43folderstech.net/services/">Weather</a></li>
-        <li><a href="http://www.43folderstech.net/contact/">Location</a></li>
+        <li><input id="checkbox" type="checkbox" />
+            <label class="switch" for="checkbox"><i class="fa-solid fa-location-dot"></i>
+            </label>
+        </li>
     </ul>
