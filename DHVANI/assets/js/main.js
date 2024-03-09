@@ -6,6 +6,7 @@ let selectedMood = '';
 let currentSongIndex = 0;
 var locationName = "Initial Location";
 let updateProgress;
+let clickCounter = 0;
 
 //Sidebar navigaation working functionality
 function openNav() {
@@ -131,6 +132,7 @@ async function fetchWeather(lat, lon) {
 
         let weatherData, icon;
 
+        // sendPromptToOpenAI('Tell me a joke.');
 
         if (forecastData.weather.length > 0) {
             // Assuming you want the last weather condition
@@ -297,35 +299,13 @@ function updateSong(action, selectedMood) {
         .catch(error => console.error('Error:', error));
 }
 
-// Sending location name
-
-function sendLocation(location) {
+function updateRequest(action, locationName) {
     fetch(`/DHVANI/models/send_location.php`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `locationName=${location}`
-    })
-        .then(response => response.text())
-        .then(text => {
-            if (text !== "No songs found.") {
-                console.log(text);
-            } else {
-                console.error(text); // Handle the case where no songs were found
-            }
-        })
-        .catch(error => console.error('Error:', error));
-}
-
-// Sending mood
-function updateMood(mood) {
-    fetch(`/DHVANI/models/fetch_songs.php`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `mood=${mood}`
+        body: `action=${action}&locationName=${locationName}`
     })
         .then(response => response.text())
         .then(text => {
@@ -337,6 +317,92 @@ function updateMood(mood) {
         })
         .catch(error => console.error('Error:', error));
 }
+
+// function updateRequest(action, selectedMood = '', locationName = '') {
+//     let endpoint;
+//     let body;
+//     // Choose the endpoint based on the click counter's oddness and the provided action
+//     if (clickCounter % 2 === 1) { // If odd
+
+//         endpoint = 'send_location.php';
+//         body = `action=${encodeURIComponent(action)}&locationName=${encodeURIComponent(locationName)}`;
+
+//     } else { // If even, default to fetching songs regardless of the action
+
+//         endpoint = 'fetch_songs.php';
+//         body = `action=${encodeURIComponent(action)}&mood=${encodeURIComponent(selectedMood)}`;
+
+//     }
+
+//     // Proceed with the fetch request using the determined endpoint
+//     fetch(`/DHVANI/models/${endpoint}`, {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded',
+//         },
+//         // Adjust the body as needed; for demonstration, it's left generic
+//         body: body
+//     })
+//         .then(response => response.text())
+//         .then(text => {
+//             if (text !== "No songs found.") {
+//                 console.log(text); // Assuming songPlay or other operation might not always be relevant
+
+//                 songPlay(text); // Call songPlay only when fetching songs
+
+//             } else {
+//                 console.error(text); // Handle the case where no songs were found or other errors
+//             }
+//         })
+//         .catch(error => console.error('Error:', error));
+// }
+
+
+
+
+function sendRequest(action, data) {
+    let endpoint;
+    let body;
+
+    // Determine the endpoint and request body based on the action
+    switch (action) {
+        case 'sendLocation':
+            endpoint = 'send_location.php';
+            body = `locationName=${encodeURIComponent(data)}`;
+            break;
+        case 'updateMood':
+            endpoint = 'fetch_songs.php';
+            body = `mood=${encodeURIComponent(data)}`;
+            break;
+        // Add more cases for other actions as needed
+        default:
+            console.error('Invalid action provided');
+            return;
+    }
+
+    fetch(`/DHVANI/models/${endpoint}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: body
+    })
+        .then(response => response.text())
+        .then(text => {
+            // Assuming 'No songs found.' is specific to updating mood, adjust as necessary
+            if (action === 'updateMood' && text === "No songs found.") {
+                console.error(text); // Handle the case where no songs were found
+            } else {
+                // Assuming text response is always valid for sendLocation,
+                // and for successful mood updates or other actions
+
+                songPlay(text); // Call songPlay only when updating mood
+
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
 
 // autmatic next songplay
 function fetchNextSongAndPlay(index) {
@@ -378,23 +444,24 @@ function fetchSongByMood(mood) {
     switch (mood) {
         case 'happy':
             console.log('Playing Happy Song');
-            updateMood('happy');
+            //updateMood('happy');
+            sendRequest('updateMood', mood);
             break;
         case 'sad':
             console.log('Playing Sad Song');
-            updateMood('sad');
+            sendRequest('updateMood', mood);
             break;
         case 'calm':
             console.log('Playing calm Song');
-            updateMood('calm');
+            sendRequest('updateMood', mood);
             break;
         case 'anger':
             console.log('Playing anger Song');
-            updateMood('anger');
+            sendRequest('updateMood', mood);
             break;
         case 'surprise':
             console.log('Playing surprise Song');
-            updateMood('surprise');
+            sendRequest('updateMood', mood);
             break;
         case 'off':
             console.log('Stop the playing song');
@@ -409,7 +476,11 @@ function fetchSongByMood(mood) {
 document.getElementById('nextSong').addEventListener('click', function () {
 
     updatePlayButton();
+    console.log(selectedMood);
     updateSong('next', selectedMood);
+    if (clickCounter % 2 === 1) {
+        updateRequest('next', locationName);
+    }
     console.log('Next song loaded');
     console.log('Mood is calm, so changing the song');
 
@@ -418,6 +489,10 @@ document.getElementById('prevSong').addEventListener('click', function () {
 
     updatePlayButton();
     updateSong('prev', selectedMood);
+    if (clickCounter % 2 === 1) {
+        updateRequest('prev', locationName);
+    }
+
     console.log('Prev song loaded');
     console.log('Mood is happy, so changing the song');
 
@@ -425,7 +500,22 @@ document.getElementById('prevSong').addEventListener('click', function () {
 
 document.getElementById('checkbox').addEventListener('click', function () {
 
-    sendLocation(locationName);
+    //sendLocation(locationName);
+    console.log("clickCounter: " + clickCounter);
+    var clickCounterSudo = 1;
+    if (clickCounter % 2 === 0 && clickCounter > 1) {
+        sendRequest('sendLocation', locationName);
+        console.log("1st if executed");
+        clickCounterSudo++;
+    } else if (clickCounter % 2 !== 0 || clickCounter === 1) {
+        console.log("1st if executed");
+        song.pause();
+    } else if (clickCounter === 0) {
+        sendRequest('sendLocation', locationName);
+    }
+
+    clickCounter++;
+
 
 });
 
@@ -449,3 +539,80 @@ function songPlay(text) {
     song.load();
     song.play();
 }
+
+/////OPEN AI/////
+
+
+// // main.js
+// import { chatWithOpenAI } from '/Users/srinualahari/Documents/GitHub/JavaScript/dgl-409-capstone-project-Sri01729/openAI'; // Adjust the path based on your actual file structure
+
+// // Example usage
+// chatWithOpenAI("Can you tell me how many planets are there?")
+//     .then(response => {
+//         // Process or log the response as needed
+//         const responseElement = document.getElementById('chatResponse');
+
+//         // Assuming the response structure allows it, update the element's text.
+//         // This might need adjustment based on the actual structure of `response`.
+//         responseElement.innerText = response.choices[0].message.text;
+//         console.log("Chat response received:", response);
+//     })
+//     .catch(error => {
+//         console.error("Error in chat:", error);
+//     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Deprecated functions
+
+// // Sending location name
+
+// function sendLocation(location) {
+//     fetch(`/DHVANI/models/send_location.php`, {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded',
+//         },
+//         body: `locationName=${location}`
+//     })
+//         .then(response => response.text())
+//         .then(text => {
+//             if (text !== "No songs found.") {
+//                 console.log(text);
+//             } else {
+//                 console.error(text); // Handle the case where no songs were found
+//             }
+//         })
+//         .catch(error => console.error('Error:', error));
+// }
+
+// // Sending mood
+// function updateMood(mood) {
+//     fetch(`/DHVANI/models/fetch_songs.php`, {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded',
+//         },
+//         body: `mood=${mood}`
+//     })
+//         .then(response => response.text())
+//         .then(text => {
+//             if (text !== "No songs found.") {
+//                 songPlay(text);
+//             } else {
+//                 console.error(text); // Handle the case where no songs were found
+//             }
+//         })
+//         .catch(error => console.error('Error:', error));
+// }
