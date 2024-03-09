@@ -88,6 +88,7 @@
                         </div>
                     </div>
                 </div>
+                <audio id="mySound" src="/DHVANI/assets/audio/mouse-click-153941.mp3"></audio>
                 <div class="mood-button">
 
 

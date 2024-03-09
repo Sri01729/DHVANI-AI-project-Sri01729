@@ -135,7 +135,6 @@ async function fetchWeather(lat, lon) {
         // sendPromptToOpenAI('Tell me a joke.');
 
         if (forecastData.weather.length > 0) {
-            // Assuming you want the last weather condition
             const lastCondition = forecastData.weather[forecastData.weather.length - 1];
             weatherData = lastCondition.description;
             icon = lastCondition.icon;
@@ -147,7 +146,7 @@ async function fetchWeather(lat, lon) {
         temp.innerHTML = currentTemperature + "&deg";
 
         // Now set the innerHTML for both icon and value
-        if (weatherData && icon) { // Ensure these are defined
+        if (weatherData && icon) {
             locationIcon.innerHTML = `<img src="assets/img/icons/${icon}.png" alt="${weatherData}">`;
             value.innerHTML = weatherData;
         }
@@ -156,7 +155,7 @@ async function fetchWeather(lat, lon) {
         console.log(`Current weather: ${weatherData}`);
 
 
-        const mood = classifyMusicMood(currentTemperature, weatherData);
+        classifyMusicMood(weatherData);
 
         currentMood = mood;
         console.log("Mood set to:", currentMood);
@@ -207,7 +206,7 @@ song.addEventListener('play', () => {
     // Update progress bar as song plays
     updateProgress = setInterval(() => {
         progress.value = song.currentTime;
-    }, 1); // Update every 500ms
+    }, 1);
 });
 
 song.addEventListener('pause', () => {
@@ -217,7 +216,6 @@ song.addEventListener('pause', () => {
 song.addEventListener('ended', () => {
     clearInterval(updateProgress); // Stop updating progress when song ends
     progress.value = 0; // Reset progress bar when song ends
-    // Update control icon to 'play' if necessary
     currentSongIndex++;
     fetchNextSongAndPlay(currentSongIndex);
 });
@@ -240,44 +238,28 @@ function updatePlayButton() {
     ctrlIcon.classList.add("fa-pause");
 }
 
-/* ===========================Mood classification======================================*/
+/* =========================== Mood classification on weathertype======================================*/
 
-function classifyMusicMood(temperature, weatherType) {
-    if (weatherType.includes('sun')) {
-        if (temperature > 25) {
-            return 'happy';
-        } else if (temperature > 15) {
-            return 'energetic';
-        } else {
-            return 'calm';
-        }
-    } else if (weatherType.includes('rain')) {
-        if (temperature < 10) {
-            return 'sad';
-        } else {
-            return 'calm';
-        }
-    } else if (weatherType.includes('snow')) {
-        return 'calm';
-    } else if (weatherType.includes('overcast')) {
-        return 'sad';
-    } else if (weatherType.includes('cloud') || weatherType.includes('fog')) {
-        console.log('calm');
-        circle2.innerHTML = "<h1>calm</h1>";
-        return 'calm';
+function classifyMusicMood(weatherType) {
+    let mood;
 
-    } else if (temperature >= 20 || (weatherType.includes('clear') || weatherType.includes('partly cloudy'))) {
-        console.log('Happy');
-        circle2.innerHTML = "<h1>Happy 😄</h1>";
-        return 'happy';
-
+    if (weatherType.includes('Clear') || weatherType.includes('clouds') || weatherType.includes('Scattered Clouds')) {
+        mood = 'happy';
+    } else if (weatherType.includes('Overcast') || weatherType.includes('Light Rain') || weatherType.includes('Moderate Rain') || weatherType.includes('Heavy Snow')) {
+        mood = 'sad';
+    } else if (weatherType.includes('Heavy Intensity Rain') || weatherType.includes('Very Heavy Rain') || weatherType.includes('Extreme Rain') || weatherType.includes('Tornado')) {
+        mood = 'angry';
+    } else if (weatherType.includes('Thunderstorm')) {
+        mood = 'surprise';
+    } else if (weatherType.includes('Mist') || weatherType.includes('Smoke') || weatherType.includes('Haze') || weatherType.includes('Dust') || weatherType.includes('Fog')) {
+        mood = 'calm';
     } else {
-        // Default mood for any other conditions
-        return 'energetic';
+        mood = 'calm';
     }
+
+    return fetchSongByMood(mood);
 }
 
-// Navigating through songs loop front to back
 
 // Sending action and selected mood
 function updateSong(action, selectedMood) {
@@ -293,7 +275,7 @@ function updateSong(action, selectedMood) {
             if (text !== "No songs found.") {
                 songPlay(text);
             } else {
-                console.error(text); // Handle the case where no songs were found
+                console.error(text);
             }
         })
         .catch(error => console.error('Error:', error));
@@ -312,59 +294,18 @@ function updateRequest(action, locationName) {
             if (text !== "No songs found.") {
                 songPlay(text);
             } else {
-                console.error(text); // Handle the case where no songs were found
+                console.error(text);
             }
         })
         .catch(error => console.error('Error:', error));
 }
-
-// function updateRequest(action, selectedMood = '', locationName = '') {
-//     let endpoint;
-//     let body;
-//     // Choose the endpoint based on the click counter's oddness and the provided action
-//     if (clickCounter % 2 === 1) { // If odd
-
-//         endpoint = 'send_location.php';
-//         body = `action=${encodeURIComponent(action)}&locationName=${encodeURIComponent(locationName)}`;
-
-//     } else { // If even, default to fetching songs regardless of the action
-
-//         endpoint = 'fetch_songs.php';
-//         body = `action=${encodeURIComponent(action)}&mood=${encodeURIComponent(selectedMood)}`;
-
-//     }
-
-//     // Proceed with the fetch request using the determined endpoint
-//     fetch(`/DHVANI/models/${endpoint}`, {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/x-www-form-urlencoded',
-//         },
-//         // Adjust the body as needed; for demonstration, it's left generic
-//         body: body
-//     })
-//         .then(response => response.text())
-//         .then(text => {
-//             if (text !== "No songs found.") {
-//                 console.log(text); // Assuming songPlay or other operation might not always be relevant
-
-//                 songPlay(text); // Call songPlay only when fetching songs
-
-//             } else {
-//                 console.error(text); // Handle the case where no songs were found or other errors
-//             }
-//         })
-//         .catch(error => console.error('Error:', error));
-// }
-
-
 
 
 function sendRequest(action, data) {
     let endpoint;
     let body;
 
-    // Determine the endpoint and request body based on the action
+
     switch (action) {
         case 'sendLocation':
             endpoint = 'send_location.php';
@@ -374,7 +315,7 @@ function sendRequest(action, data) {
             endpoint = 'fetch_songs.php';
             body = `mood=${encodeURIComponent(data)}`;
             break;
-        // Add more cases for other actions as needed
+
         default:
             console.error('Invalid action provided');
             return;
@@ -389,14 +330,11 @@ function sendRequest(action, data) {
     })
         .then(response => response.text())
         .then(text => {
-            // Assuming 'No songs found.' is specific to updating mood, adjust as necessary
             if (action === 'updateMood' && text === "No songs found.") {
-                console.error(text); // Handle the case where no songs were found
+                console.error(text);
             } else {
-                // Assuming text response is always valid for sendLocation,
-                // and for successful mood updates or other actions
 
-                songPlay(text); // Call songPlay only when updating mood
+                songPlay(text);
 
             }
         })
@@ -406,32 +344,43 @@ function sendRequest(action, data) {
 
 // autmatic next songplay
 function fetchNextSongAndPlay(index) {
-    // Example fetch request to your server to get the next song
-    // Adjust URL and parameters as needed for your backend implementation
+
     fetch(`/DHVANI/models/fetch_songs.php?songIndex=${index}`)
         .then(response => response.json())
         .then(data => {
             if (data.success && data.songPath) {
-                // Assuming `data.songPath` is the URL to the next song
+
                 song.src = data.songPath;
                 song.play();
             } else {
                 console.log("No more songs or error fetching the next song");
-                // Optionally reset currentSongIndex or handle the end of playlist
             }
         })
         .catch(error => console.error('Error fetching next song:', error));
+}
+
+////////Mous click sound effect/////
+
+function mouseClickEffect() {
+    var clickSound = document.getElementById('mySound');
+    clickSound.play();
 }
 
 ///////////////////////////////// Mood selection button///////////////////////////////////////
 
 document.querySelectorAll('input[name="switch"]').forEach(radio => {
 
+
     radio.addEventListener('click', function () {
 
+        mouseClickEffect();
+        function myFunction() {
+            fetchSongByMood(selectedMood);
+        }
         selectedMood = this.value;
         updatePlayButton();
-        fetchSongByMood(selectedMood);
+        setTimeout(myFunction, 1000);
+
     });
 });
 
@@ -440,11 +389,9 @@ function fetchSongByMood(mood) {
     // fetching a song based on mood from a database
     console.log(`Fetching song for mood: ${mood}`);
 
-    // Example:
     switch (mood) {
         case 'happy':
             console.log('Playing Happy Song');
-            //updateMood('happy');
             sendRequest('updateMood', mood);
             break;
         case 'sad':
@@ -466,6 +413,8 @@ function fetchSongByMood(mood) {
         case 'off':
             console.log('Stop the playing song');
             song.pause();
+            ctrlIcon.classList.remove("fa-pause");
+            ctrlIcon.classList.add("fa-play");
             break;
         default:
             console.log('Mood not recognized');
@@ -477,9 +426,13 @@ document.getElementById('nextSong').addEventListener('click', function () {
 
     updatePlayButton();
     console.log(selectedMood);
+    mouseClickEffect();
+    function myFunction() {
+        updateRequest('next', locationName);
+    }
     updateSong('next', selectedMood);
     if (clickCounter % 2 === 1) {
-        updateRequest('next', locationName);
+        setTimeout(myFunction, 2000);
     }
     console.log('Next song loaded');
     console.log('Mood is calm, so changing the song');
@@ -488,9 +441,13 @@ document.getElementById('nextSong').addEventListener('click', function () {
 document.getElementById('prevSong').addEventListener('click', function () {
 
     updatePlayButton();
+    mouseClickEffect();
+    function myFunction() {
+        updateRequest('prev', locationName);
+    }
     updateSong('prev', selectedMood);
     if (clickCounter % 2 === 1) {
-        updateRequest('prev', locationName);
+        setTimeout(myFunction, 2000);
     }
 
     console.log('Prev song loaded');
@@ -501,6 +458,8 @@ document.getElementById('prevSong').addEventListener('click', function () {
 document.getElementById('checkbox').addEventListener('click', function () {
 
     //sendLocation(locationName);
+    updatePlayButton();
+    mouseClickEffect();
     console.log("clickCounter: " + clickCounter);
     var clickCounterSudo = 1;
     if (clickCounter % 2 === 0 && clickCounter > 1) {
@@ -510,6 +469,8 @@ document.getElementById('checkbox').addEventListener('click', function () {
     } else if (clickCounter % 2 !== 0 || clickCounter === 1) {
         console.log("1st if executed");
         song.pause();
+        ctrlIcon.classList.remove("fa-pause");
+        ctrlIcon.classList.add("fa-play");
     } else if (clickCounter === 0) {
         sendRequest('sendLocation', locationName);
     }
@@ -524,7 +485,6 @@ function songPlay(text) {
     console.log(typeof text);
     const details = text.split("|");
 
-    // the order is id, name, genre, author, path
     const songId = details[0];
     const songName = details[1];
     const songGenre = details[2];
@@ -612,6 +572,47 @@ function songPlay(text) {
 //                 songPlay(text);
 //             } else {
 //                 console.error(text); // Handle the case where no songs were found
+//             }
+//         })
+//         .catch(error => console.error('Error:', error));
+// }
+
+
+
+// function updateRequest(action, selectedMood = '', locationName = '') {
+//     let endpoint;
+//     let body;
+//     // Choose the endpoint based on the click counter's oddness and the provided action
+//     if (clickCounter % 2 === 1) { // If odd
+
+//         endpoint = 'send_location.php';
+//         body = `action=${encodeURIComponent(action)}&locationName=${encodeURIComponent(locationName)}`;
+
+//     } else { // If even, default to fetching songs regardless of the action
+
+//         endpoint = 'fetch_songs.php';
+//         body = `action=${encodeURIComponent(action)}&mood=${encodeURIComponent(selectedMood)}`;
+
+//     }
+
+//     // Proceed with the fetch request using the determined endpoint
+//     fetch(`/DHVANI/models/${endpoint}`, {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded',
+//         },
+//         // Adjust the body as needed; for demonstration, it's left generic
+//         body: body
+//     })
+//         .then(response => response.text())
+//         .then(text => {
+//             if (text !== "No songs found.") {
+//                 console.log(text); // Assuming songPlay or other operation might not always be relevant
+
+//                 songPlay(text); // Call songPlay only when fetching songs
+
+//             } else {
+//                 console.error(text); // Handle the case where no songs were found or other errors
 //             }
 //         })
 //         .catch(error => console.error('Error:', error));
