@@ -139,7 +139,8 @@
                 </div>
             </div>
         </div>
-        <!-- New released songs carousel -->
+        <!-- <div id="response"></div>
+        New released songs carousel -->
         <div class="carousel-container">
             <h2>New Releases</h2>
             <div class="carousel swiper mySwiper">

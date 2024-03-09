@@ -1,8 +1,17 @@
 {
+  "name": "dgl-409-capstone-project-sri01729",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "openAI.js",
+  "scripts": {
+    "dev": "node openAI.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@magenta/music": "^1.23.1",
-    "puppeteer": "^22.3.0",
-    "puppeteer-extra": "^3.3.6",
-    "yarn": "^1.22.21"
+    "dotenv": "^16.4.5",
+    "openai": "^4.28.4"
   }
 }

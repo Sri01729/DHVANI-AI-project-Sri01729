@@ -74,12 +74,12 @@ ul {
   position: fixed;
   display: block;
   list-style-type: none;
-  right: -3.2em;
+  right: -4.2em;
   top: 57%;
-  -webkit-animation: slideright 1s forwards;
+  -webkit-animation: slideright 3s forwards;
   -webkit-animation-delay: 1.5s;
   animation: slideright 1s forwards;
-  animation-delay: 0.5s;
+  animation-delay: 5s;
 }
 
 @keyframes slideright {

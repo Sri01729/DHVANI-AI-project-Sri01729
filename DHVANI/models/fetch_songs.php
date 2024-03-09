@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 // Start a session
 session_start();
 require '../core/db_connection.php'; // Include the database connection code
@@ -74,4 +76,3 @@ if (isset($_POST['mood'])) {
 } else {
     die("Mood not provided in POST request.");
 }
-
