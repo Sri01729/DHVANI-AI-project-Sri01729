@@ -475,9 +475,18 @@ h2 {
 }
 
 .song-name,
-.artist-name {
+.artist-name,
+.currentsong-name,
+.nextsong-name,
+.nextnextsong-name {
   margin: 5px 0;
 }
+.currentsong-artist,
+.nextsong-artist,
+.nextnextsong-artist {
+  font-size: 9.6px;
+}
+
 .card-image {
   width: 300px;
   height: 300px;
@@ -558,6 +567,16 @@ button.next {
   border-radius: 50%;
   border: 1px solid black;
   box-shadow: 0 5px 10px rgba(255, 26, 26, 0.22);
+  margin-top: 20px;
+  animation: rotateAnimation 10s infinite linear;
+}
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #song-name {
@@ -1533,3 +1552,63 @@ body {
   color: white; /* New color when checked */
   transform: rotate(90deg);
 }
+/* sound icon button */
+.sound-button-container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.sound-button {
+  font-family: Arial, sans-serif;
+  border: none;
+  width: 130px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+  border: 2px solid black;
+}
+
+.sound-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.sound-icon {
+  margin-right: 5px;
+}
+
+/* Mouse follow animation
+.cursorFollower,
+.cursorFollowerDot {
+  left: 0;
+  top: 0;
+}
+
+.cursorFollower {
+  position: fixed;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid black;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s;
+  mix-blend-mode: difference;
+  z-index: 999;
+  pointer-events: none;
+}
+.cursorFollowerDot {
+  position: fixed;
+  width: 0.8rem;
+  height: 0.8rem;
+  background: #000;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s;
+  mix-blend-mode: difference;
+  z-index: 999;
+  pointer-events: none;
+} */

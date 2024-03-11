@@ -5,9 +5,9 @@
             <div class="player-container">
                 <div class="music-player">
 
-                    <img src="/DHVANI/assets/img/michael.png" alt="" class="song-img">
-                    <h3 id="song-name">Dangerous</h3>
-                    <p id="artist-name">Michael jackson</p>
+                    <img src="/DHVANI/assets/img/music_symbol.jpeg" alt="" class="song-img">
+                    <h3 id="song-name">Click sound button below</h3>
+                    <p id="artist-name">to play</p>
 
                     <audio id="song" preload="metadata">
                         <source type="audio/mpeg" id="source"
@@ -28,8 +28,8 @@
                 <div class="small-cards">
                     <div class="cardContainer">
                         <div class="weather-card">
-                            <p class="city">PINK CITY</p>
-                            <p class="default-value">loading</p>
+                            <p class="city">Loading city name</p>
+                            <p class="default-value">loading weather</p>
 
                             <span class="weather-icon"></span>
 
@@ -37,11 +37,11 @@
                             <div class="minmaxContainer">
                                 <div class="min">
                                     <p class="minHeading">Min</p>
-                                    <p class="minTemp">30°</p>
+                                    <p class="minTemp">loading</p>
                                 </div>
                                 <div class="max">
                                     <p class="maxHeading">Max</p>
-                                    <p class="maxTemp">32°</p>
+                                    <p class="maxTemp">loading</p>
                                 </div>
                             </div>
                         </div>
@@ -59,8 +59,8 @@
                         </div>
                         <div class="loader">
                             <div class="song">
-                                <p class="name">Time in a Bottle</p>
-                                <p class="artist">Jim Corce</p>
+                                <p class="currentsong-name">Time in a Bottle</p>
+                                <p class="currentsong-artist">Jim Corce</p>
                             </div>
                             <div class="albumcover"></div>
                             <div class="loading">
@@ -72,16 +72,16 @@
                         </div>
                         <div class="loader">
                             <div class="song">
-                                <p class="name">My Way</p>
-                                <p class="artist">Frank Sinatra</p>
+                                <p class="nextsong-name">My Way</p>
+                                <p class="nextsong-artist">Frank Sinatra</p>
                             </div>
                             <div class="albumcover"></div>
                             <div class="play"></div>
                         </div>
                         <div class="loader">
                             <div class="song">
-                                <p class="name">Lemon Tree</p>
-                                <p class="artist">Fools Garden</p>
+                                <p class="nextnextsong-name">Lemon Tree</p>
+                                <p class="nextnextsong-artist">Fools Garden</p>
                             </div>
                             <div class="albumcover"></div>
                             <div class="play"></div>
@@ -142,121 +142,11 @@
         </div>
         <!-- <div id="response"></div>
         New released songs carousel -->
-        <div class="carousel-container">
-            <h2>New Releases</h2>
-            <div class="carousel swiper mySwiper">
-                <div class="carousel-slides swiper-wrapper">
-                    <div class="card swiper-slide">
-                        <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
-                        <div class="card-info">
-                            <p class="song-name">Song name</p>
-                            <p class="artist-name">Artist name</p>
-                        </div>
-                    </div>
+        <!-- <span id="cursorFollower" class="cursorFollower"></span>
+        <span id="cursorFollowerDot" class="cursorFollowerDot"></span> -->
+        <div class="sound-button-container">
+            <button id="soundButton" class="sound-button">
+                <i id="soundIcon" class="sound-icon">&#128266;</i> Sound
+            </button>
 
-                    <div class="card swiper-slide">
-                        <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
-                        <div class="card-info">
-                            <p class="song-name">Song name</p>
-                            <p class="artist-name">Artist name</p>
-                        </div>
-                    </div>
-
-                    <div class="card swiper-slide">
-                        <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
-                        <div class="card-info">
-                            <p class="song-name">Song name</p>
-                            <p class="artist-name">Artist name</p>
-                        </div>
-                    </div>
-
-                    <div class="card swiper-slide">
-                        <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
-                        <div class="card-info">
-                            <p class="song-name">Song name</p>
-                            <p class="artist-name">Artist name</p>
-                        </div>
-                    </div>
-                    <div class="card swiper-slide">
-                        <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
-                        <div class="card-info">
-                            <p class="song-name">Song name</p>
-                            <p class="artist-name">Artist name</p>
-                        </div>
-                    </div>
-                    <div class="card swiper-slide">
-                        <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
-                        <div class="card-info">
-                            <p class="song-name">Song name</p>
-                            <p class="artist-name">Artist name</p>
-                        </div>
-                    </div>
-                    <div class="card swiper-slide">
-                        <div class="card-image"> <img src="/DHVANI/assets/img/DHVANI.svg" alt=""></div>
-                        <div class="card-info">
-                            <p class="song-name">Song name</p>
-                            <p class="artist-name">Artist name</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
         </div>
-        <!-- Artists carousel -->
-        <div class="carousel-container">
-            <h2>Artists</h2>
-            <div class="carousel swiper mySwiper">
-                <div class="carousel-slides swiper-wrapper">
-                    <div class="card swiper-slide">
-                        <div class="card-image"> <img src="/DHVANI/assets/img/harry.png" alt=""></div>
-                        <div class="card-info">
-                            <p class="artist-name">Artist name</p>
-                        </div>
-                    </div>
-
-                    <div class="card swiper-slide">
-                        <div class="card-image"> <img src="/DHVANI/assets/img/michael.png" alt=""></div>
-                        <div class="card-info">
-                            <p class="artist-name">Artist name</p>
-                        </div>
-                    </div>
-
-                    <div class="card swiper-slide">
-                        <div class="card-image"> <img src="/DHVANI/assets/img/justin.png" alt=""></div>
-                        <div class="card-info">
-                            <p class="artist-name">Artist name</p>
-                        </div>
-                    </div>
-
-                    <div class="card swiper-slide">
-                        <div class="card-image"> <img src="/DHVANI/assets/img/bruno.png" alt=""></div>
-                        <div class="card-info">
-                            <p class="artist-name">Artist name</p>
-                        </div>
-                    </div>
-                    <div class="card swiper-slide">
-                        <div class="card-image"> <img src="/DHVANI/assets/img/michael.png" alt=""></div>
-                        <div class="card-info">
-                            <p class="artist-name">Artist name</p>
-                        </div>
-                    </div>
-                    <div class="card swiper-slide">
-                        <div class="card-image"> <img src="/DHVANI/assets/img/justin.png" alt=""></div>
-                        <div class="card-info">
-                            <p class="artist-name">Artist name</p>
-                        </div>
-                    </div>
-                    <div class="card swiper-slide">
-                        <div class="card-image"> <img src="/DHVANI/assets/img/harry.png" alt=""></div>
-                        <div class="card-info">
-                            <p class="artist-name">Artist name</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </div>
-</main>
-<script src="/DHVANI/assets/js/main.js"></script>

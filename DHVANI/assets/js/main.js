@@ -154,8 +154,29 @@ async function fetchWeather(lat, lon) {
         console.log(`Current temperature: ${currentTemperature}°C`);
         console.log(`Current weather: ${weatherData}`);
 
+        ///////Sound icon butoon function/////////
 
-        classifyMusicMood(weatherData);
+        var soundButton = document.getElementById('soundButton');
+        var soundIcon = document.getElementById('soundIcon');
+        var isSoundOn = false;
+        soundIcon.textContent = '\u{1F507}';
+
+        soundButton.addEventListener('click', function () {
+            isSoundOn = !isSoundOn; // Toggle the sound state
+            soundIcon.textContent = isSoundOn ? '\u{1F50A}' : '\u{1F507}';
+            // Play the sound only if isSoundOn is true
+            if (isSoundOn) {
+                updatePlayButton();
+                classifyMusicMood(weatherData);
+            } else {
+                song.pause(); //  pause the song when sound is turned off
+                song.currentTime = 0; //  reset song to the start
+                updatePauseButton();
+            }
+        });
+
+
+
 
         currentMood = mood;
         console.log("Mood set to:", currentMood);
@@ -187,15 +208,13 @@ ctrlIcon.addEventListener("click", function () {
     if (ctrlIcon.classList.contains("fa-play")) {
         song.play().then(() => {
             // Successful playback
-            ctrlIcon.classList.remove("fa-play");
-            ctrlIcon.classList.add("fa-pause");
+            updatePlayButton();
         }).catch(error => {
             console.error("Playback failed: ", error);
         });
     } else if (ctrlIcon.classList.contains("fa-pause")) {
         song.pause();
-        ctrlIcon.classList.remove("fa-pause");
-        ctrlIcon.classList.add("fa-play");
+        updatePauseButton();
     }
 
 });
@@ -225,8 +244,7 @@ progress.addEventListener('input', () => {
     song.currentTime = progress.value;
     if (song.paused) {
         song.play().then(() => {
-            ctrlIcon.classList.add("fa-pause");
-            ctrlIcon.classList.remove("fa-play");
+            updatePauseButton();
         }).catch(error => {
             console.error("Playback failed on seeking", error);
         });
@@ -238,26 +256,31 @@ function updatePlayButton() {
     ctrlIcon.classList.add("fa-pause");
 }
 
+function updatePauseButton() {
+    ctrlIcon.classList.remove("fa-pause");
+    ctrlIcon.classList.add("fa-play");
+}
+
 /* =========================== Mood classification on weathertype======================================*/
 
 function classifyMusicMood(weatherType) {
-    let mood;
+
 
     if (weatherType.includes('Clear') || weatherType.includes('clouds') || weatherType.includes('Scattered Clouds')) {
-        mood = 'happy';
+        selectedMood = 'happy';
     } else if (weatherType.includes('Overcast') || weatherType.includes('Light Rain') || weatherType.includes('Moderate Rain') || weatherType.includes('Heavy Snow')) {
-        mood = 'sad';
+        selectedMood = 'sad';
     } else if (weatherType.includes('Heavy Intensity Rain') || weatherType.includes('Very Heavy Rain') || weatherType.includes('Extreme Rain') || weatherType.includes('Tornado')) {
-        mood = 'angry';
+        selectedMood = 'angry';
     } else if (weatherType.includes('Thunderstorm')) {
-        mood = 'surprise';
+        selectedMood = 'surprise';
     } else if (weatherType.includes('Mist') || weatherType.includes('Smoke') || weatherType.includes('Haze') || weatherType.includes('Dust') || weatherType.includes('Fog')) {
-        mood = 'calm';
+        selectedMood = 'calm';
     } else {
-        mood = 'calm';
+        selectedMood = 'calm';
     }
 
-    return fetchSongByMood(mood);
+    return fetchSongByMood(selectedMood);
 }
 
 
@@ -413,8 +436,7 @@ function fetchSongByMood(mood) {
         case 'off':
             console.log('Stop the playing song');
             song.pause();
-            ctrlIcon.classList.remove("fa-pause");
-            ctrlIcon.classList.add("fa-play");
+            updatePauseButton();
             break;
         default:
             console.log('Mood not recognized');
@@ -432,11 +454,9 @@ document.getElementById('nextSong').addEventListener('click', function () {
     }
     updateSong('next', selectedMood);
     if (clickCounter % 2 === 1) {
-        setTimeout(myFunction, 2000);
+        setTimeout(myFunction, 10);
     }
     console.log('Next song loaded');
-    console.log('Mood is calm, so changing the song');
-
 });
 document.getElementById('prevSong').addEventListener('click', function () {
 
@@ -447,12 +467,10 @@ document.getElementById('prevSong').addEventListener('click', function () {
     }
     updateSong('prev', selectedMood);
     if (clickCounter % 2 === 1) {
-        setTimeout(myFunction, 2000);
+        setTimeout(myFunction, 10);
     }
 
     console.log('Prev song loaded');
-    console.log('Mood is happy, so changing the song');
-
 });
 
 document.getElementById('checkbox').addEventListener('click', function () {
@@ -469,8 +487,7 @@ document.getElementById('checkbox').addEventListener('click', function () {
     } else if (clickCounter % 2 !== 0 || clickCounter === 1) {
         console.log("1st if executed");
         song.pause();
-        ctrlIcon.classList.remove("fa-pause");
-        ctrlIcon.classList.add("fa-play");
+        updatePauseButton();
     } else if (clickCounter === 0) {
         sendRequest('sendLocation', locationName);
     }
@@ -491,6 +508,12 @@ function songPlay(text) {
     const songAuthor = details[3];
     const songPath = details[4];
 
+    var songNameElement = document.querySelector('.currentsong-name');
+    var songArtistElement = document.querySelector('.currentsong-artist');
+
+    songNameElement.textContent = songName;
+    songArtistElement.textContent = songAuthor;
+
     document.getElementById('source').src = songPath;
     document.getElementById('song-name').innerHTML = songName;
     document.getElementById('artist-name').innerHTML = songAuthor;
@@ -498,7 +521,70 @@ function songPlay(text) {
 
     song.load();
     song.play();
+
+    if (details.length >= 10) { // Checks if there are enough details for at least the next song
+        const nextSongName = details[6];
+        const nextSongAuthor = details[8];
+        var nextSongNameElement = document.querySelector('.nextsong-name');
+        var nextSongArtistElement = document.querySelector('.nextsong-artist');
+        nextSongNameElement.textContent = nextSongName;
+        nextSongArtistElement.textContent = nextSongAuthor;
+    }
+
+    if (details.length > 14) { // Checks if there are enough details for another song
+        const nextNextSongName = details[11];
+        const nextNextSongAuthor = details[13];
+        var nextNextSongNameElement = document.querySelector('.nextnextsong-name');
+        var nextNextSongArtistElement = document.querySelector('.nextnextsong-artist');
+        nextNextSongNameElement.textContent = nextNextSongName;
+        nextNextSongArtistElement.textContent = nextNextSongAuthor;
+    }
 }
+
+
+
+//////Mouse follow animation////
+
+// var xp = 0,
+//     mouseX = 0;
+// var yp = 0,
+//     mouseY = 0;
+// var xpDot = 0,
+//     mouseX = 0;
+// var ypDot = 0,
+//     mouseY = 0;
+
+// const cursorFollower = document.querySelector(".cursorFollower");
+// const cursorFollowerDot = document.querySelector(".cursorFollowerDot");
+
+// document.addEventListener("mousemove", (e) => {
+//     mouseX = e.pageX;
+//     mouseY = e.pageY;
+// });
+
+// setInterval(function () {
+//     xp += (mouseX - xp) / 15;
+//     yp += (mouseY - yp) / 15;
+
+//     cursorFollower.style.left = xp + "px";
+//     cursorFollower.style.top = yp + "px";
+// }, 20);
+
+// setInterval(function () {
+//     xpDot += (mouseX - xpDot) / 25;
+//     ypDot += (mouseY - ypDot) / 25;
+
+//     cursorFollowerDot.style.left = xpDot + "px";
+//     cursorFollowerDot.style.top = ypDot + "px";
+// }, 20);
+
+
+
+
+
+
+
+
 
 /////OPEN AI/////
 
