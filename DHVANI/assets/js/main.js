@@ -24,6 +24,8 @@ function closeNav() {
     document.getElementById("mySidenav").style.border = "none";
 }
 
+
+
 //Swiper script for carousel
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: 4,
@@ -633,6 +635,9 @@ document.addEventListener('DOMContentLoaded', function () {
     startTour();
 });
 
+document.querySelector(".guide").onclick = function () {
+    startTour();
+};
 
 //////Mouse follow animation////
 

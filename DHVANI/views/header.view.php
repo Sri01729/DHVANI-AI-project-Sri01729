@@ -46,6 +46,7 @@
             </form>
         </div> -->
         <div class="nav-main-buttons">
+            <button style="font-size:18px" class="guide">Guide</button>
             <button style="font-size:18px" onclick="window.location.href='/DHVANI/controllers/login.php';"><i
                     class="fa fa-sign-out"></i></button>
             <span style="font-size:40px;cursor:pointer;color:white;margin-right: 20px ;"

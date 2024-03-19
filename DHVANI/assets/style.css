@@ -443,7 +443,10 @@ button {
   font-size: 24px;
   font-family: "Courier New", Courier, monospace;
 }
-
+/* Sound button container */
+.sound-button-container {
+  margin: 10px 0px;
+}
 /* ============================== Album carousel and artist carousel===================================*/
 .carousel-container {
   width: 100%;
@@ -537,12 +540,8 @@ button.next {
 
 .music-player {
   backdrop-filter: blur(15px);
-  /* max-width: 100%; */
-  /* max-height: 100%; */
   width: 426px;
   height: 420px;
-  /* margin: auto; */
-  /* margin: auto; */
   padding: 20px 10px;
   box-sizing: content-box;
   text-align: center;
@@ -1538,6 +1537,7 @@ body {
   z-index: 1;
   cursor: pointer;
   display: flex;
+  color: white;
   align-items: center;
   justify-content: center;
   border: 2px solid rgb(126, 126, 126);
@@ -1549,12 +1549,12 @@ body {
     0px 0px 2px rgb(17, 17, 17) inset, 0px 0px 10px rgb(17, 17, 17) inset,
     0px 0px 40px rgb(17, 17, 17), 0px 0px 100px rgb(17, 17, 17),
     0px 0px 5px rgb(17, 17, 17);
-  border: 2px solid rgb(255, 255, 255);
+  border: 2px solid #ff8800;
   background-color: rgb(1, 1, 1);
 }
 
 :checked + .switch .fa-location-dot {
-  color: white; /* New color when checked */
+  color: #ff8800; /* New color when checked */
   transform: rotate(90deg);
 }
 /* sound icon button */
