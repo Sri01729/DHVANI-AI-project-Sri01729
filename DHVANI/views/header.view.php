@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Dhvani</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/music.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intro.js/minified/introjs.min.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/3a1fd0a5ce.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.0.0"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="/DHVANI/assets/style.css">
 </head>
 
@@ -32,27 +34,27 @@
     </header>
     <nav id="navlist">
 
-        <div class="logo"><a href="#">DHVANI</a></div>
-        <div class="block1">
+        <div class="logo"><a href="#" style="color:#ff8800;">DHVANI</a></div>
+        <!-- <div class="block1">
             <a href="#">Profile</a>
             <a href="#">About</a>
-        </div>
+        </div> -->
         <!-- search bar right align -->
-        <div class="search">
+        <!-- <div class="search">
             <form action="#" class="searchbar">
                 <input type="text" placeholder="Search...." name="search">
             </form>
-        </div>
+        </div> -->
         <div class="nav-main-buttons">
-            <button style="font-size:12px" onclick="window.location.href='/DHVANI/controllers/login.php';"><i
+            <button style="font-size:18px" onclick="window.location.href='/DHVANI/controllers/login.php';"><i
                     class="fa fa-sign-out"></i></button>
             <span style="font-size:40px;cursor:pointer;color:white;margin-right: 20px ;"
                 onclick="openNav()">&#9776;</span>
         </div>
     </nav>
     <ul>
-        <li><input id="checkbox" type="checkbox" />
-            <label class="switch" for="checkbox"><i class="fa-solid fa-location-dot"></i>
+        <li><input id="checkbox" type="checkbox">
+            <label class="switch" for="checkbox" id="locationButton"><i class="fa-solid fa-location-dot"></i>
             </label>
         </li>
     </ul>

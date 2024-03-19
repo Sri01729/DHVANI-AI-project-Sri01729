@@ -7,6 +7,9 @@ let currentSongIndex = 0;
 var locationName = "Initial Location";
 let updateProgress;
 let clickCounter = 0;
+var soundButton = document.getElementById('soundButton');
+var soundIcon = document.getElementById('soundIcon');
+var isSoundOn = false;
 
 //Sidebar navigaation working functionality
 function openNav() {
@@ -123,8 +126,8 @@ async function fetchWeather(lat, lon) {
         console.log(tempMin, tempMax);
 
         //Temp assign
-        minTemp.innerHTML = tempMin;
-        maxTemp.innerHTML = tempMax;
+        minTemp.innerHTML = tempMin + "&deg";
+        maxTemp.innerHTML = tempMax + "&deg";
 
         // Clear any existing icons and default text
         locationIcon.innerHTML = '';
@@ -142,7 +145,7 @@ async function fetchWeather(lat, lon) {
         }
 
         // Extract and round the current temperature data
-        const currentTemperature = Math.round(forecastData.main.temp);
+        const currentTemperature = Math.round(tempMin);
         temp.innerHTML = currentTemperature + "&deg";
 
         // Now set the innerHTML for both icon and value
@@ -156,15 +159,16 @@ async function fetchWeather(lat, lon) {
 
         ///////Sound icon butoon function/////////
 
-        var soundButton = document.getElementById('soundButton');
-        var soundIcon = document.getElementById('soundIcon');
-        var isSoundOn = false;
-        soundIcon.textContent = '\u{1F507}';
+
+        // soundIcon.textContent = '\u{1F507}';
 
         soundButton.addEventListener('click', function () {
+
+            // soundIcon.textContent = isSoundOn ? '\u{1F507}' : '\u{1F50A}';
+            this.style.backgroundColor = this.style.backgroundColor === 'black' ? 'white' : 'black';
+
+            this.style.color = this.style.backgroundColor === 'black' ? 'white' : 'black';
             isSoundOn = !isSoundOn; // Toggle the sound state
-            soundIcon.textContent = isSoundOn ? '\u{1F50A}' : '\u{1F507}';
-            // Play the sound only if isSoundOn is true
             if (isSoundOn) {
                 updatePlayButton();
                 classifyMusicMood(weatherData);
@@ -174,9 +178,6 @@ async function fetchWeather(lat, lon) {
                 updatePauseButton();
             }
         });
-
-
-
 
         currentMood = mood;
         console.log("Mood set to:", currentMood);
@@ -209,12 +210,22 @@ ctrlIcon.addEventListener("click", function () {
         song.play().then(() => {
             // Successful playback
             updatePlayButton();
+            document.getElementById('loading').innerHTML = `
+        <div class="load"></div>
+        <div class="load"></div>
+        <div class="load"></div>
+        <div class="load"></div>
+    `;;
         }).catch(error => {
             console.error("Playback failed: ", error);
         });
     } else if (ctrlIcon.classList.contains("fa-pause")) {
         song.pause();
         updatePauseButton();
+        document.querySelectorAll('.load').forEach(function (element) {
+            element.style.animation = 'none';
+        });
+        document.getElementById('loading').innerHTML = "<i class='fas fa-play' id='playIcon'></i>";
     }
 
 });
@@ -254,11 +265,13 @@ progress.addEventListener('input', () => {
 function updatePlayButton() {
     ctrlIcon.classList.remove("fa-play");
     ctrlIcon.classList.add("fa-pause");
+    imageRotation();
 }
 
 function updatePauseButton() {
     ctrlIcon.classList.remove("fa-pause");
     ctrlIcon.classList.add("fa-play");
+    //imageRotation();
 }
 
 /* =========================== Mood classification on weathertype======================================*/
@@ -279,6 +292,7 @@ function classifyMusicMood(weatherType) {
     } else {
         selectedMood = 'calm';
     }
+
 
     return fetchSongByMood(selectedMood);
 }
@@ -375,6 +389,7 @@ function fetchNextSongAndPlay(index) {
 
                 song.src = data.songPath;
                 song.play();
+                imageRotation();
             } else {
                 console.log("No more songs or error fetching the next song");
             }
@@ -402,7 +417,7 @@ document.querySelectorAll('input[name="switch"]').forEach(radio => {
         }
         selectedMood = this.value;
         updatePlayButton();
-        setTimeout(myFunction, 1000);
+        setTimeout(myFunction, 100);
 
     });
 });
@@ -416,26 +431,32 @@ function fetchSongByMood(mood) {
         case 'happy':
             console.log('Playing Happy Song');
             sendRequest('updateMood', mood);
+            soundIconUpdate();
             break;
         case 'sad':
             console.log('Playing Sad Song');
             sendRequest('updateMood', mood);
+            soundIconUpdate();
             break;
         case 'calm':
             console.log('Playing calm Song');
             sendRequest('updateMood', mood);
+            soundIconUpdate();
             break;
-        case 'anger':
+        case 'angry':
             console.log('Playing anger Song');
             sendRequest('updateMood', mood);
+            soundIconUpdate();
             break;
         case 'surprise':
             console.log('Playing surprise Song');
             sendRequest('updateMood', mood);
+            soundIconUpdate();
             break;
         case 'off':
             console.log('Stop the playing song');
             song.pause();
+            soundIconUpdate();
             updatePauseButton();
             break;
         default:
@@ -443,6 +464,9 @@ function fetchSongByMood(mood) {
     }
 }
 
+// function soundIconUpdate() {
+//     soundIcon.textContent = '\u{1F507}';
+// }
 // Selecting next and previous songs
 document.getElementById('nextSong').addEventListener('click', function () {
 
@@ -521,6 +545,7 @@ function songPlay(text) {
 
     song.load();
     song.play();
+    imageRotation();
 
     if (details.length >= 10) { // Checks if there are enough details for at least the next song
         const nextSongName = details[6];
@@ -541,6 +566,72 @@ function songPlay(text) {
     }
 }
 
+///Music player image rotating funtionality////
+
+function imageRotation() {
+    document.getElementById('ctrlIcon').addEventListener('click', function () {
+        var image = document.querySelector('.song-img');
+        if (image.classList.contains('song-img-pause')) {
+            image.classList.remove('song-img-pause');
+        } else {
+            image.classList.add('song-img-pause');
+        }
+    });
+
+}
+
+
+////////////Website Intro//////////////////
+
+function startTour() {
+    introJs().setOptions({
+        steps: [{
+            title: 'Welcome to Dhvani!',
+            intro: 'Dive into a musical journey that dances to your mood, the beat of your environment, and the essence of your location. Let’s get started!'
+        },
+        {
+            element: document.querySelector('.weather-card'),
+            intro: 'Peek at this card for the current weather and your location. Dhvani cleverly tailors music to match the vibe of the weather. Cool, right?',
+            position: 'right'
+        },
+        {
+            element: document.querySelector('.de'),
+            intro: 'Feeling happy, calm, or adventurous? Choose your mood here and watch Dhvani curate the perfect playlist for you on the fly!',
+            position: 'right'
+        },
+        {
+            element: document.querySelector('#locationButton'),
+            intro: 'Tap this icon for a musical tour, featuring local artists and cultural vibes.<strong> Remember to turn this off if you switch to mood or weather based music! </strong>',
+            position: 'left'
+        },
+        {
+            element: document.querySelector('.music-player'),
+            intro: 'This is your music command center! Play, pause, skip, or replay to your heart’s content. Your wish is its command.',
+            position: 'bottom'
+        },
+        {
+            element: document.querySelector('.playlist'),
+            intro: 'Curious about what’s playing and what’s next? Here’s your musical lineup, all set for your listening pleasure.',
+            position: 'bottom'
+        },
+        {
+            element: document.querySelector('#soundButton'),
+            intro: 'Hit this button and let the Dhvani tunes sweep you off your feet. It’s time to groove!',
+            position: 'bottom'
+        }],
+        'skipLabel': 'Exit tour',
+        'nextLabel': 'Next',
+        'prevLabel': 'Back',
+        'doneLabel': 'Done',
+        showBullets: false,
+        showStepNumbers: false,
+        exitOnOverlayClick: true
+    }).start();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    startTour();
+});
 
 
 //////Mouse follow animation////

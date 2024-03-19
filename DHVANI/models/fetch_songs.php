@@ -22,7 +22,7 @@ if (!isset($_SESSION['songIndex'])) {
 $tableName = "";
 if (isset($_POST['mood'])) {
     $mood = $_POST['mood'];
-    $allowedMoods = ['happy', 'sad', 'calm', 'anger', 'surprise'];
+    $allowedMoods = ['happy', 'sad', 'calm', 'angry', 'surprise'];
     if (in_array($mood, $allowedMoods)) {
         $tableName = "{$mood}_songs";
     } else {

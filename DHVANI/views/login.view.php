@@ -14,7 +14,7 @@
 <body>
     <header class="introHeader">
         <nav class="navbar">
-            <a href="/" class="logo">DHVANI</a>
+            <a href="/" class="logo" style="color:#ff8800;">DHVANI</a>
             <div class="nav-buttons">
                 <button onclick="window.location.href='/DHVANI/views/login.view.php';" class="btn signup">Login</button>
                 <button onclick="window.location.href='/DHVANI/views/signup.view.php';"
@@ -27,7 +27,7 @@
         <div class="form-box">
             <div class="form-value">
                 <div class="form-heading">
-                    <h2>Login</h2>
+                    <h2 style="color:#ff8800;">Login</h2>
                 </div>
                 <form action="../models/login_authentication.php" method="POST">
                     <div class="inputbox">
