@@ -25,8 +25,6 @@
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="#">Home</a>
-            <a href="#">Artists</a>
-            <a href="#">Genre</a>
             <a href="#">Climate</a>
             <a href="#">Place</a>
             <a href="#">mood</a>
@@ -46,9 +44,9 @@
             </form>
         </div> -->
         <div class="nav-main-buttons">
-            <button style="font-size:18px" class="guide">Guide</button>
-            <button style="font-size:18px" onclick="window.location.href='/DHVANI/controllers/login.php';"><i
-                    class="fa fa-sign-out"></i></button>
+            <span style="font-size:18px" class="guide" id="nav">Guide</span>
+            <span style="font-size:18px" onclick="window.location.href='/DHVANI/controllers/login.php';" id="nav"><i
+                    class="fa fa-sign-out"></i></span>
             <span style="font-size:40px;cursor:pointer;color:white;margin-right: 20px ;"
                 onclick="openNav()">&#9776;</span>
         </div>

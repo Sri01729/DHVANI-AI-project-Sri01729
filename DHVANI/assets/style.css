@@ -285,7 +285,12 @@ button {
 }
 
 /* ============================= Header ====================================*/
-
+.logo {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
 .signout {
   width: auto;
 }
@@ -307,7 +312,6 @@ button {
   text-align: center;
   padding: 17px;
   text-decoration: none;
-  font-size: 15px;
 }
 
 .search input[type="text"] {
@@ -326,9 +330,11 @@ button {
   display: flex;
   justify-content: space-between;
 }
-.nav-main-buttons button {
+.nav-main-buttons #nav {
   margin: 15px 20px;
   height: 20px;
+  color: white;
+  cursor: pointer;
 }
 .block1 {
   display: flex;
@@ -451,7 +457,6 @@ button {
 .carousel-container {
   width: 100%;
   position: relative;
-  margin-top: 100px;
   height: auto;
 }
 

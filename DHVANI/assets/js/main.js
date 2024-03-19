@@ -639,75 +639,10 @@ document.querySelector(".guide").onclick = function () {
     startTour();
 };
 
-//////Mouse follow animation////
-
-// var xp = 0,
-//     mouseX = 0;
-// var yp = 0,
-//     mouseY = 0;
-// var xpDot = 0,
-//     mouseX = 0;
-// var ypDot = 0,
-//     mouseY = 0;
-
-// const cursorFollower = document.querySelector(".cursorFollower");
-// const cursorFollowerDot = document.querySelector(".cursorFollowerDot");
-
-// document.addEventListener("mousemove", (e) => {
-//     mouseX = e.pageX;
-//     mouseY = e.pageY;
-// });
-
-// setInterval(function () {
-//     xp += (mouseX - xp) / 15;
-//     yp += (mouseY - yp) / 15;
-
-//     cursorFollower.style.left = xp + "px";
-//     cursorFollower.style.top = yp + "px";
-// }, 20);
-
-// setInterval(function () {
-//     xpDot += (mouseX - xpDot) / 25;
-//     ypDot += (mouseY - ypDot) / 25;
-
-//     cursorFollowerDot.style.left = xpDot + "px";
-//     cursorFollowerDot.style.top = ypDot + "px";
-// }, 20);
-
-
-
-
-
-
 
 
 
 /////OPEN AI/////
-
-
-// // main.js
-// import { chatWithOpenAI } from '/Users/srinualahari/Documents/GitHub/JavaScript/dgl-409-capstone-project-Sri01729/openAI'; // Adjust the path based on your actual file structure
-
-// // Example usage
-// chatWithOpenAI("Can you tell me how many planets are there?")
-//     .then(response => {
-//         // Process or log the response as needed
-//         const responseElement = document.getElementById('chatResponse');
-
-//         // Assuming the response structure allows it, update the element's text.
-//         // This might need adjustment based on the actual structure of `response`.
-//         responseElement.innerText = response.choices[0].message.text;
-//         console.log("Chat response received:", response);
-//     })
-//     .catch(error => {
-//         console.error("Error in chat:", error);
-//     });
-
-
-
-
-
-
 
 
 
