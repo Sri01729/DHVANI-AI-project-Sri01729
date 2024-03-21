@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/DHVANI/assets/style.css">
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 
 <body>
@@ -16,9 +16,8 @@
         <nav class="navbar">
             <a href="/" class="logo" style="color:#ff8800;">DHVANI</a>
             <div class="nav-buttons">
-                <button onclick="window.location.href='/DHVANI/views/login.view.php';" class="btn login">Login</button>
-                <button onclick="window.location.href='/DHVANI/views/signup.view.php';"
-                    class="btn signup">Signup</button>
+                <button onclick="window.location.href='../controllers/login.php';" class="btn login">Login</button>
+                <button onclick="window.location.href='../controllers/signup.php';" class="btn signup">Signup</button>
             </div>
         </nav>
     </header>
@@ -52,18 +51,18 @@
                     <button>Register</button>
                     <div class="register">
                         <label>Already have an account?</label>
-                        <a href="/DHVANI/views/login.view.php"> Login</a>
+                        <a href="../controllers/login.php"> Login</a>
                 </form>
             </div>
         </div>
     </section>
     <div class="overlay"></div>
 
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.58/build/spline-viewer.js"></script>
+    <!-- <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.58/build/spline-viewer.js"></script>
     <spline-viewer url="https://prod.spline.design/c9fcTwaKmqpWhCkC/scene.splinecode"></spline-viewer>
+ -->
 
-
-    <script src="/DHVANI/assets/js/main.js" async defer></script>
+    <script src="../assets/js/main.js" async defer></script>
 </body>
 
 </html>

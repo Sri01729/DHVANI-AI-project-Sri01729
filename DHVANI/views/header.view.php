@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/3a1fd0a5ce.js" crossorigin="anonymous"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <link rel="stylesheet" href="/DHVANI/assets/style.css">
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 
 <body>
@@ -45,7 +45,7 @@
         </div> -->
         <div class="nav-main-buttons">
             <span style="font-size:18px" class="guide" id="nav">Guide</span>
-            <span style="font-size:18px" onclick="window.location.href='/DHVANI/controllers/login.php';" id="nav"><i
+            <span style="font-size:18px" onclick="window.location.href='../controllers/login.php';" id="nav"><i
                     class="fa fa-sign-out"></i></span>
             <span style="font-size:40px;cursor:pointer;color:white;margin-right: 20px ;"
                 onclick="openNav()">&#9776;</span>

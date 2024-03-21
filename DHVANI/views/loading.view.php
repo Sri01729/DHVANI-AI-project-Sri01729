@@ -37,7 +37,7 @@
     </div>
     <script type="text/javascript">
     setTimeout(function() {
-        window.location.href = "../index.php"; // Redirect to the home page after 3 seconds
+        window.location.href = "../controllers/home.php"; // Redirect to the home page after 3 seconds
     }, 3000); // 3000 milliseconds = 3 seconds
     </script>
 </body>

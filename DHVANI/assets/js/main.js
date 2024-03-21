@@ -1,6 +1,5 @@
 
 
-
 var currentMood;
 let selectedMood = '';
 let currentSongIndex = 0;
@@ -152,7 +151,7 @@ async function fetchWeather(lat, lon) {
 
         // Now set the innerHTML for both icon and value
         if (weatherData && icon) {
-            locationIcon.innerHTML = `<img src="assets/img/icons/${icon}.png" alt="${weatherData}">`;
+            locationIcon.innerHTML = `<img src="../assets/img/icons/${icon}.png" alt="${weatherData}">`;
             value.innerHTML = weatherData;
         }
 
@@ -643,6 +642,15 @@ document.querySelector(".guide").onclick = function () {
 
 
 /////OPEN AI/////
+document.addEventListener('DOMContentLoaded', function () {
+    sendMessageToOpenAI("Hello ChatGPT, what is the capital of India?");
+});
+
+
+
+
+
+
 
 
 
