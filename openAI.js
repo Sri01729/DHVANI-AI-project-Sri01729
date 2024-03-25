@@ -1,4 +1,24 @@
 import openai from './config/openAI.js';
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// const express = require('express');
+// const path = require('path');
+
+const app = express();
+
+// ES Modules fix for __dirname
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+ });
+
+app.listen(8080, () => {
+    console.log('listening on 8080 port');
+});
+
 function sendMessageToOpenAI(userMessage) {
     openai.chat.completions.create({
         model: "gpt-4-0125-preview",
@@ -18,7 +38,7 @@ function sendMessageToOpenAI(userMessage) {
 }
 
 // Example usage of the function
-sendMessageToOpenAI("Hello ChatGPT, what is the capital of India?");
+// sendMessageToOpenAI("Hello ChatGPT, can you give me the information about artists and ciultural music in courtenay?");
 
-module.exports.sendMessageToOpenAI = sendMessageToOpenAI;
-export { sendMessageToOpenAI };
+// module.exports.sendMessageToOpenAI = sendMessageToOpenAI;
+// export { sendMessageToOpenAI };
