@@ -545,7 +545,7 @@ button.next {
 
 .music-player {
   backdrop-filter: blur(15px);
-  width: 426px;
+  width: 390px;
   height: 420px;
   padding: 20px 10px;
   box-sizing: content-box;
@@ -593,7 +593,7 @@ button.next {
 
 #progress {
   -webkit-appearance: none;
-  width: 100%;
+  width: 80%;
   height: 6px;
   background: #ff8800;
   border-radius: 4px;

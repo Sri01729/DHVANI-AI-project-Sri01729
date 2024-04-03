@@ -71,6 +71,7 @@ function latLongValues(position) {
     const lon = position.coords.longitude;
     console.log(`Latitude: ${lat}, Longitude: ${lon}`);
     fetchWeather(lat, lon);
+    setInterval(fetchWeather, 300000);
 }
 
 //Refactoring the JSON data i.e., coverting tinto text data

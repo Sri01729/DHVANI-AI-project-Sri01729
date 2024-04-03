@@ -17,7 +17,19 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/3a1fd0a5ce.js" crossorigin="anonymous"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <link rel="stylesheet" href="../assets/style.css">
+    <script type="text/javascript">
+    (function(c, l, a, r, i, t, y) {
+        c[a] = c[a] || function() {
+            (c[a].q = c[a].q || []).push(arguments)
+        };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "lmkq1joacw");
+    </script>
+    <link rel="stylesheet" href="../DHVANI/assets/style.css">
 </head>
 
 <body>

@@ -13,9 +13,33 @@
 
 <body>
     <h1>Test</h1>
-
+    <div id="aiResponse">Ask ChatGPT something...</div>
     <script>
-        alert('Hello from the frotnend');
+        async function waitThenFetchAIResponse() {
+            // Wait for 80 seconds before fetching
+            console.log("Waiting for 200 seconds before fetching...");
+            setTimeout(async () => {
+                try {
+                    // Update the URL to include any specific message if required
+                    const response = await fetch('/api/location?message=Your custom message here');
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const data = await response.json();
+
+                    if (data.message) {
+                        document.getElementById('aiResponse').textContent = data.message;
+                    } else {
+                        document.getElementById('aiResponse').textContent = 'Failed to get response.';
+                    }
+                } catch (error) {
+                    console.error('Fetch error:', error);
+                    document.getElementById('aiResponse').textContent = 'Failed to get response due to an error.';
+                }
+            }, 200000); // 80 seconds
+        }
+
+        waitThenFetchAIResponse();
     </script>
 </body>
 

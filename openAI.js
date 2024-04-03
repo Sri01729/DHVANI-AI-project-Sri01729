@@ -13,7 +13,21 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
- });
+});
+
+
+app.get('/api/location', async (req, res) => {
+    try {
+        // Assuming you get a userMessage from query params or defaulting to a predefined question
+        const userMessage = "Hello ChatGPT, can you give me information about artists and cultural music in Courtenay?";
+
+        const message = await sendMessageToOpenAI(userMessage);
+        res.json({ message });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to fetch data from OpenAI" });
+    }
+});
 
 app.listen(8080, () => {
     console.log('listening on 8080 port');
