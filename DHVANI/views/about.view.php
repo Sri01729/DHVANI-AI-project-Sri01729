@@ -52,7 +52,16 @@
                     moment.</p>
             </article>
 
+            <hr class="divider">
 
+            <article class="content-block">
+                <h2 class="heading">Future Features</h2>
+                <p class="text">The future of Dhvani is about pioneering the next step in music streaming. I am
+                    currently working on automating AI music creation to provide a dynamic, ever-evolving stream of
+                    melodies composed on-the-fly, instead of a database of
+                    pre-saved songs, ensuring that your music is as alive and ever-changing as the world around you.
+                    It's not just about discovering music; it's about creating a living soundtrack for your life.</p>
+            </article>
         </div>
     </section>
 </div>
