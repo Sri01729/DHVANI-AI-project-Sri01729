@@ -29,7 +29,7 @@
         y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "lmkq1joacw");
     </script>
-    <link rel="stylesheet" href="../DHVANI/assets/style.css">
+    <link rel="stylesheet" href="/DHVANI/assets/style.css">
 </head>
 
 <body>
@@ -44,11 +44,7 @@
     </header>
     <nav id="navlist">
 
-        <div class="logo"><a href="#" style="color:#ff8800;">DHVANI</a></div>
-        <!-- <div class="block1">
-            <a href="#">Profile</a>
-            <a href="#">About</a>
-        </div> -->
+        <div class="logo"><a href="/DHVANI/controllers/home.php" style="color:#ff8800;">DHVANI</a></div>
         <!-- search bar right align -->
         <!-- <div class="search">
             <form action="#" class="searchbar">
@@ -56,6 +52,10 @@
             </form>
         </div> -->
         <div class="nav-main-buttons">
+            <div class="block1">
+                <a href="#">Profile</a>
+                <a href="#" id="myBtn">About</a>
+            </div>
             <span style="font-size:18px" class="guide" id="nav">Guide</span>
             <span style="font-size:18px" onclick="window.location.href='../controllers/login.php';" id="nav"><i
                     class="fa fa-sign-out"></i></span>

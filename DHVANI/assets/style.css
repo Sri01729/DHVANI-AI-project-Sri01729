@@ -339,7 +339,7 @@ button {
 .block1 {
   display: flex;
   justify-content: space-between;
-  width: 200px;
+  width: 180px;
 }
 
 @media (max-width: 768px) {
@@ -352,6 +352,7 @@ button {
   .nav-main-buttons {
     justify-content: center;
     padding: 10px 0;
+    align-items: center;
   }
 
   .search {
@@ -1603,7 +1604,7 @@ button.next {
 .heading {
   font-weight: normal;
   font-size: 1.5em;
-  color: #333;
+  color: #f80;
 }
 
 .text {
