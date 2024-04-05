@@ -41,6 +41,17 @@
                     experiences and the music that fits them, curating your personal playlist in real-time.</p>
             </article>
 
+            <hr class="divider">
+
+            <article class="content-block">
+                <h2 class="heading">The Story of Dhvani</h2>
+                <p class="text">The idea for Dhvani came from my own life, from my need for a music service that doesn't
+                    just play songs but plays the right songs for how I'm feeling and where I am. I wanted to build
+                    something that brought music closer to the heart, that understood the listener, and Dhvani is the
+                    realization of that dream—a service that adapts to you, creating a personalized soundscape for every
+                    moment.</p>
+            </article>
+
 
         </div>
     </section>
