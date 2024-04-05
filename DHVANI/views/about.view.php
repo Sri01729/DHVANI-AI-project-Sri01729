@@ -10,6 +10,17 @@
                     plays a part in the symphony of life.</p>
             </article>
 
+            <hr class="divider">
+
+            <article class="content-block">
+                <h2 class="heading">Our Vision</h2>
+                <p class="text">To redefine music streaming by integrating emotional intelligence through artificial
+                    intelligence. My vision for Dhvani is to craft an experience where music becomes an extension of
+                    your emotions and environment. I see a future where your music is as unique as you are, adapting in
+                    real-time to your world and the rhythm of your life. I aim to create a seamless blend of melody and
+                    technology, making your every moment resonate with the perfect soundtrack.</p>
+            </article>
+
 
         </div>
     </section>
