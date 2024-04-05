@@ -59,8 +59,8 @@
             <span style="font-size:18px" class="guide" id="nav">Guide</span>
             <span style="font-size:18px" onclick="window.location.href='../controllers/login.php';" id="nav"><i
                     class="fa fa-sign-out"></i></span>
-            <span style="font-size:40px;cursor:pointer;color:white;margin-right: 20px ;"
-                onclick="openNav()">&#9776;</span>
+            <span class="open-nav" style="font-size:40px;cursor:pointer;color:white;margin-right: 20px;">&#9776;</span>
+
         </div>
     </nav>
     <ul>

@@ -10,6 +10,19 @@ var soundButton = document.getElementById('soundButton');
 var soundIcon = document.getElementById('soundIcon');
 var isSoundOn = false;
 
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('.open-nav').onclick = function () {
+        openNav();
+    };
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('.closebtn').onclick = function () {
+        closeNav();
+    };
+});
+
+
 //Sidebar navigaation working functionality
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
