@@ -21,6 +21,17 @@
                     technology, making your every moment resonate with the perfect soundtrack.</p>
             </article>
 
+            <hr class="divider">
+
+            <article class="content-block">
+                <h2 class="heading">Our Mission</h2>
+                <p class="text">I am on a mission to personalize your music experience in a way that's never been done
+                    before. With Dhvani, I want to connect the dots between your feelings, your surroundings, and the
+                    music that surrounds you. Leveraging the latest in AI, I am working to ensure that your music is a
+                    companion that understands you, offering solace, excitement, and motivation right when you need it.
+                </p>
+            </article>
+
 
         </div>
     </section>
