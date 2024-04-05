@@ -32,6 +32,15 @@
                 </p>
             </article>
 
+            <hr class="divider">
+
+            <article class="content-block">
+                <h2 class="heading">How It Works</h2>
+                <p class="text">It's a system that's sensitive to your moods and settings, selecting music that speaks
+                    to where you are, both physically and emotionally. My algorithms are the bridge between your
+                    experiences and the music that fits them, curating your personal playlist in real-time.</p>
+            </article>
+
 
         </div>
     </section>
