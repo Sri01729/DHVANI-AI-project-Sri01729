@@ -227,7 +227,7 @@ input:valid ~ label {
   text-decoration: underline;
 }
 
-button {
+/* button {
   width: 100%;
   height: 40px;
   border-radius: 40px;
@@ -239,7 +239,7 @@ button {
   font-size: 1em;
   font-weight: 600;
   margin-top: 5px;
-}
+} */
 
 .register {
   font-size: 0.9em;
@@ -1516,28 +1516,27 @@ button.next {
 /* sound icon button */
 
 .sound-button {
-  font-family: Arial, sans-serif;
+  background: black;
+  border-radius: 12px;
   border: none;
-  width: 192px;
-  border-radius: 20px;
-  padding: 10px 20px;
-  background-color: white;
-  color: black;
+  padding: 0;
   cursor: pointer;
-  outline: none;
-  transition: background-color 0.3s ease;
-  border: 2px solid black;
+  outline-offset: 4px;
 }
-
-.sound-button:hover {
-  background-color: black;
-  color: white;
-}
-
 .sound-icon {
-  margin-right: 5px;
+  display: block;
+  padding: 12px 42px;
+  border-radius: 12px;
+  border: 2px solid black;
+  font-size: 1.25rem;
+  background: white;
+  color: black;
+  transform: translateY(-6px);
 }
 
+.sound-button:active .sound-icon {
+  transform: translateY(-2px);
+}
 /* Intro cards */
 
 /* Customizing the tooltip background and text color */

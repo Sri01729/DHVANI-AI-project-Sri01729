@@ -25,8 +25,11 @@
                 </div>
             </div>
             <div class="sound-button-container">
-                <button id="soundButton" class="sound-button">
-                    <i id="soundIcon" class="sound-icon"></i> Weather Tunes
+
+                <button class="sound-button" id="soundButton">
+                    <span class="sound-icon" id="soundIcon">
+                        Weather tunes
+                    </span>
                 </button>
             </div>
         </div>
