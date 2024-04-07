@@ -1375,9 +1375,9 @@ button.next {
   transition: 0.4s ease-in-out;
 }
 
-.loader:hover {
+/* .loader:hover {
   background-color: lightgray;
-}
+} */
 
 .currentplaying {
   display: flex;

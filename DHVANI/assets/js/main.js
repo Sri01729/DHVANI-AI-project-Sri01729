@@ -64,6 +64,7 @@ function closeNav() {
 
 
 
+
 //Swiper script for carousel
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: 4,
