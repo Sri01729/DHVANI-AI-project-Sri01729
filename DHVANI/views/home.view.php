@@ -20,7 +20,9 @@
 
                 <div class="controls">
                     <!-- Shuffle -->
-                    <div><i class="fas fa-random fa-sm" aria-hidden="true"></i></div>
+                    <div id="shuffleButton" onclick="toggleShuffle()">
+                        <i id="shuffleIcon" class="fas fa-random fa-sm" aria-hidden="true"></i>
+                    </div>
                     <div id="prevSong"><i class="fa-solid fa-backward"></i></div>
                     <div><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
                     <div id="nextSong"><i class="fa-solid fa-forward"></i></div>

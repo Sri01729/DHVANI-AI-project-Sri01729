@@ -9,6 +9,8 @@ let clickCounter = 0;
 var soundButton = document.getElementById('soundButton');
 var soundIcon = document.getElementById('soundIcon');
 var isSoundOn = false;
+var shuffleClickCount = 0; // Starts at 0, meaning shuffle is initially off
+
 
 var modal = document.getElementById("myModal");
 
@@ -290,8 +292,12 @@ function classifyMusicMood(weatherType) {
 
 
 // Sending action and selected mood
-function updateSong(action, selectedMood) {
-    fetch(`/DHVANI/models/fetch_songs.php`, {
+
+function updateSong(action, selectedMood, isShuffle) {
+    // Determine the fetch path based on whether shuffle is enabled
+    const fetchPath = isShuffle ? `/DHVANI/models/fetch_songs_shuffle.php` : `/DHVANI/models/fetch_songs.php`;
+
+    fetch(fetchPath, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -308,6 +314,8 @@ function updateSong(action, selectedMood) {
         })
         .catch(error => console.error('Error:', error));
 }
+
+
 
 function updateRequest(action, locationName) {
     fetch(`/DHVANI/models/send_location.php`, {
@@ -368,6 +376,29 @@ function sendRequest(action, data) {
         })
         .catch(error => console.error('Error:', error));
 }
+
+//////////////////////////// Shuffle functionality ///////////////////////////////
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Select the first child of the controls container
+
+    var control = document.querySelector('.controls div:nth-child(1)');
+
+    control.addEventListener('click', function () {
+        // Toggle the 'clicked' class to change the color
+        this.classList.toggle('clicked');
+        shuffleClickCount++;
+
+    });
+});
+
+
+
+
+
+
+
+
 
 
 // autmatic next songplay
@@ -465,7 +496,11 @@ document.getElementById('nextSong').addEventListener('click', function () {
     function myFunction() {
         updateRequest('next', locationName);
     }
-    updateSong('next', selectedMood);
+
+    console.log("shuffle click counter is " + shuffleClickCount);
+    var isShuffleOn = shuffleClickCount % 2 !== 0;
+    updateSong('next', selectedMood, isShuffleOn);
+    // updateSong('next', selectedMood);
     if (clickCounter % 2 === 1) {
         setTimeout(myFunction, 10);
     }
@@ -478,7 +513,9 @@ document.getElementById('prevSong').addEventListener('click', function () {
     function myFunction() {
         updateRequest('prev', locationName);
     }
-    updateSong('prev', selectedMood);
+    console.log("shuffle click counter is " + shuffleClickCount);
+    var isShuffleOn = shuffleClickCount % 2 !== 0;
+    updateSong('prev', selectedMood, isShuffleOn);
     if (clickCounter % 2 === 1) {
         setTimeout(myFunction, 10);
     }
