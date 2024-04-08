@@ -392,7 +392,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+/////////////////////// Loop functionality ///////////////////////////
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Select the first child of the controls container
+
+    var control = document.querySelector('.controls div:nth-child(5)');
+
+    control.addEventListener('click', function () {
+        // Toggle the 'clicked' class to change the color
+        this.classList.toggle('clicked');
+        alert('under construction');
+
+    });
+});
 
 
 

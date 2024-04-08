@@ -4,8 +4,14 @@
         <div class="player-container">
             <div class="music-player">
 
-                <img src="/DHVANI/assets/img/music_symbol.jpeg" alt="" class="song-img song-img-rotate"
-                    id="rotatingImage">
+                <div class="music">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                    <span class="line line4"></span>
+                    <span class="line line5"></span>
+                </div>
+
 
                 <h3 id="song-name">Get ready </h3>
                 <p id="artist-name">for DHVANI</p>
