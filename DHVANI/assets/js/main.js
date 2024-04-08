@@ -36,59 +36,8 @@ window.onclick = function (event) {
 }
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector('.open-nav').onclick = function () {
-        openNav();
-    };
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector('.closebtn').onclick = function () {
-        closeNav();
-    };
-});
 
 
-//Sidebar navigaation working functionality
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("navlist").style.marginLeft = "250px";
-    document.getElementById("mySidenav").style.borderRight = "2px solid #604cff";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("navlist").style.marginLeft = "0";
-    document.getElementById("mySidenav").style.border = "none";
-}
-
-
-
-
-//Swiper script for carousel
-var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 4,
-    spaceBetween: 30,
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-    breakpoints: {
-
-        320: {
-            slidesPerView: 1,
-        },
-        480: {
-            slidesPerView: 2,
-        },
-        768: {
-            slidesPerView: 3,
-        },
-        1200: {
-            slidesPerView: 4,
-        },
-    },
-});
 
 
 /////////////////////////////////////////////    Fetching  weather    ///////////////////////////////////////////////////
@@ -323,7 +272,7 @@ function classifyMusicMood(weatherType) {
 
     if (weatherType.includes('Clear') || weatherType.includes('clouds') || weatherType.includes('Scattered Clouds')) {
         selectedMood = 'happy';
-    } else if (weatherType.includes('Overcast') || weatherType.includes('Light Rain') || weatherType.includes('Moderate Rain') || weatherType.includes('Heavy Snow')) {
+    } else if (weatherType.includes('Overcast') || weatherType.includes('Light Rain') || weatherType.includes('Moderate Rain') || weatherType.includes('Snow')) {
         selectedMood = 'sad';
     } else if (weatherType.includes('Heavy Intensity Rain') || weatherType.includes('Very Heavy Rain') || weatherType.includes('Extreme Rain') || weatherType.includes('Tornado')) {
         selectedMood = 'angry';
@@ -473,42 +422,40 @@ function fetchSongByMood(mood) {
         case 'happy':
             console.log('Playing Happy Song');
             sendRequest('updateMood', mood);
-            soundIconUpdate();
             break;
+
         case 'sad':
             console.log('Playing Sad Song');
             sendRequest('updateMood', mood);
-            soundIconUpdate();
             break;
+
         case 'calm':
             console.log('Playing calm Song');
             sendRequest('updateMood', mood);
-            soundIconUpdate();
             break;
+
         case 'angry':
             console.log('Playing anger Song');
             sendRequest('updateMood', mood);
-            soundIconUpdate();
             break;
+
         case 'surprise':
             console.log('Playing surprise Song');
             sendRequest('updateMood', mood);
-            soundIconUpdate();
             break;
+
         case 'off':
             console.log('Stop the playing song');
             song.pause();
-            soundIconUpdate();
             updatePauseButton();
             break;
+
         default:
             console.log('Mood not recognized');
     }
 }
 
-// function soundIconUpdate() {
-//     soundIcon.textContent = '\u{1F507}';
-// }
+
 // Selecting next and previous songs
 document.getElementById('nextSong').addEventListener('click', function () {
 
@@ -782,4 +729,32 @@ document.addEventListener('DOMContentLoaded', function () {
 //             }
 //         })
 //         .catch(error => console.error('Error:', error));
+// }
+
+//////////////////////////  Sidebar functionality  //////////////////////////////////
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     document.querySelector('.open-nav').onclick = function () {
+//         openNav();
+//     };
+// });
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     document.querySelector('.closebtn').onclick = function () {
+//         closeNav();
+//     };
+// });
+
+
+// //Sidebar navigaation working functionality
+// function openNav() {
+//     document.getElementById("mySidenav").style.width = "250px";
+//     document.getElementById("navlist").style.marginLeft = "250px";
+//     document.getElementById("mySidenav").style.borderRight = "2px solid #604cff";
+// }
+
+// function closeNav() {
+//     document.getElementById("mySidenav").style.width = "0";
+//     document.getElementById("navlist").style.marginLeft = "0";
+//     document.getElementById("mySidenav").style.border = "none";
 // }

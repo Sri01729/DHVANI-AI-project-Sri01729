@@ -72,7 +72,8 @@
                                 <p class="currentsong-name">----------------</p>
                                 <p class="currentsong-artist">------</p>
                             </div>
-                            <div class="albumcover"></div>
+                            <div class="albumcover"><img src="/DHVANI/assets/img/DHVANI_logo.png"
+                                    alt="album_cover_image"></div>
                             <div class="loading" id="loading">
                                 <div class="load"></div>
                                 <div class="load"></div>
@@ -85,7 +86,8 @@
                                 <p class="nextsong-name">--------------</p>
                                 <p class="nextsong-artist">-----</p>
                             </div>
-                            <div class="albumcover"></div>
+                            <div class="albumcover"><img src="/DHVANI/assets/img/DHVANI_logo.png"
+                                    alt="album_cover_image"></div>
                             <div class="play"><i class='fas fa-music'></i></div>
                         </div>
                         <div class="loader">
@@ -93,7 +95,8 @@
                                 <p class="nextnextsong-name">----------------</p>
                                 <p class="nextnextsong-artist">------</p>
                             </div>
-                            <div class="albumcover"></div>
+                            <div class="albumcover"><img src="/DHVANI/assets/img/DHVANI_logo.png"
+                                    alt="album_cover_image"></div>
                             <div class="play"><i class='fas fa-music'></i></div>
                         </div>
                     </div>
