@@ -665,7 +665,13 @@ function startTour() {
             element: document.querySelector('.playlist'),
             intro: 'Curious about what’s playing and what’s next? Here’s your musical lineup, all set for your listening pleasure.',
             position: 'bottom'
-        },
+            },
+
+            {
+                element: document.querySelector('#toggleListening'),
+                intro: 'Click this button to start the voice recognition. You can say commands like "play happy music" or "play calm music" or "play *mood* music" to listen to music that matches your current mood.',
+                position: 'bottom'
+            },
         {
             element: document.querySelector('#soundButton'),
             intro: 'Hit this button and let the Dhvani tunes sweep you off your feet. It’s time to groove!',
@@ -702,7 +708,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// This script assumes Annyang has already been included in your project via a script tag
+// Voice assistant
 
 document.addEventListener('DOMContentLoaded', function () {
     if (annyang) {
