@@ -271,16 +271,16 @@ function updatePauseButton() {
 
 function classifyMusicMood(weatherType) {
 
-
-    if (weatherType.includes('Clear') || weatherType.includes('clouds') || weatherType.includes('Scattered Clouds')) {
+    console.log(weatherType);
+    if (weatherType.includes('clear') || weatherType.includes('scattered clouds')) {
         selectedMood = 'happy';
-    } else if (weatherType.includes('Overcast') || weatherType.includes('Light Rain') || weatherType.includes('Moderate Rain') || weatherType.includes('Snow')) {
+    } else if (weatherType.includes('overcast clouds') || weatherType.includes('light rain') || weatherType.includes('moderate rain') || weatherType.includes('snow')) {
         selectedMood = 'sad';
-    } else if (weatherType.includes('Heavy Intensity Rain') || weatherType.includes('Very Heavy Rain') || weatherType.includes('Extreme Rain') || weatherType.includes('Tornado')) {
+    } else if (weatherType.includes('heavy intensity rain') || weatherType.includes('very heavy rain') || weatherType.includes('extreme rain') || weatherType.includes('tornado')) {
         selectedMood = 'angry';
-    } else if (weatherType.includes('Thunderstorm')) {
+    } else if (weatherType.includes('thunderstorm')) {
         selectedMood = 'surprise';
-    } else if (weatherType.includes('Mist') || weatherType.includes('Smoke') || weatherType.includes('Haze') || weatherType.includes('Dust') || weatherType.includes('Fog')) {
+    } else if (weatherType.includes('mist') || weatherType.includes('smoke') || weatherType.includes('haze') || weatherType.includes('dust') || weatherType.includes('fog')) {
         selectedMood = 'calm';
     } else {
         selectedMood = 'calm';
@@ -408,7 +408,20 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+///////////////// Local music ////////////////////////
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Select the first child of the controls container
+
+    var control = document.querySelector('#local_music');
+
+    control.addEventListener('click', function () {
+        // Toggle the 'clicked' class to change the color
+
+        alert('under construction');
+
+    });
+});
 
 
 
@@ -689,6 +702,62 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+// This script assumes Annyang has already been included in your project via a script tag
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (annyang) {
+        // Define the commands
+        const commands = {
+            'play happy music': () => {
+                console.log("Playing happy music...");
+                fetchSongByMood('happy');
+                updatePlayButton();
+            },
+            'play sad music': () => {
+                console.log("Playing sad music...");
+                fetchSongByMood('sad');
+                updatePlayButton();
+            },
+            'play angry music': () => {
+                console.log("Playing angry music...");
+                fetchSongByMood('angry');
+                updatePlayButton();
+            },
+            'play calm music': () => {
+                console.log("Playing calm music...");
+                fetchSongByMood('calm');
+                updatePlayButton();
+            },
+            'play surprise music': () => {
+                console.log("Playing surprise music...");
+                fetchSongByMood('surprise');
+                updatePlayButton();
+            }
+        };
+
+        // Add commands to Annyang
+        annyang.addCommands(commands);
+
+        // Toggle button setup
+        var listening = false;
+        var toggleButton = document.getElementById('toggleListening');
+
+        toggleButton.addEventListener('click', function () {
+            if (listening) {
+                annyang.abort();  // Stop Annyang from listening
+                toggleButton.style.backgroundColor = this.style.backgroundColor === 'orange' ? 'black' : 'orange';
+                console.log("Dhvani has stopped listening.");
+            } else {
+                annyang.start({ continuous: false });  // Start Annyang listening
+                toggleButton.style.backgroundColor = this.style.backgroundColor === 'orange' ? 'black' : 'orange';
+                console.log("Dhvani is now listening.");
+            }
+            listening = !listening;  // Toggle the listening state
+        });
+    } else {
+        console.log("Dhvani voice assistant is not supported by this browser.");
+    }
+});
 
 
 

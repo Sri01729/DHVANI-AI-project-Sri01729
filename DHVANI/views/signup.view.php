@@ -43,12 +43,8 @@
                         <input type="password" name="password" required>
                         <label for="">Password</label>
                     </div>
-                    <div class="forget">
-                        <label><input type="checkbox">Remember Me</label>
-                        <a href="#">Forget password?</a>
 
-                    </div>
-                    <button>Register</button>
+                    <button id="login">Register</button>
                     <div class="register">
                         <label>Already have an account?</label>
                         <a href="../controllers/login.php"> Login</a>

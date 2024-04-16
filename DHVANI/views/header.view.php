@@ -19,6 +19,7 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
     <script type="text/javascript">
     (function(c, l, a, r, i, t, y) {
         c[a] = c[a] || function() {
@@ -54,11 +55,13 @@
             </form>
         </div> -->
         <div class="nav-main-buttons">
-            <div class="block1">
-                <a href="#">Profile</a>
-                <a href="#" id="myBtn">About</a>
-            </div>
+
+            <a href="#" id="local_music">Local</a>
+            <a href="#" id="myBtn">About</a>
+
+
             <span style="font-size:18px" class="guide" id="nav">Guide</span>
+            <button id="toggleListening"><i class="fa-solid fa-microphone"></i></button>
             <span style="font-size:18px" onclick="window.location.href='../controllers/login.php';" id="nav"><i
                     class="fa fa-sign-out"></i></span>
             <!-- Side bar icon -->

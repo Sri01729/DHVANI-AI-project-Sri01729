@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../DHVANI/assets/style.css">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                 <div class="form-heading">
                     <h2 style="color:#ff8800;">Login</h2>
                 </div>
-                <form action="../models/login_authentication.php" method="POST">
+                <form action="../DHVANI/models/login_authentication.php" method="POST">
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
                         <input type="email" name="email" required>
@@ -40,12 +40,8 @@
                         <label for="">Password</label>
                     </div>
                     <div class="login-button">
-                        <div class="forget">
-                            <label><input type="checkbox">Remember Me</label>
-                            <a href="#">Forget password?</a>
 
-                        </div>
-                        <button>Log in</button>
+                        <button id="login">Log in</button>
                         <div class="register">
                             <label>Don't have an account?</label>
                             <a href="../controllers/signup.php"> Register</a>
@@ -56,8 +52,8 @@
         </div>
     </section>
     <div class="overlay"></div>
-    <!-- <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.58/build/spline-viewer.js"></script>
-    <spline-viewer url="https://prod.spline.design/c9fcTwaKmqpWhCkC/scene.splinecode"></spline-viewer> -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.58/build/spline-viewer.js"></script>
+    <spline-viewer url="https://prod.spline.design/c9fcTwaKmqpWhCkC/scene.splinecode"></spline-viewer>
 
 
     <script src="../assets/js/main.js" async defer></script>

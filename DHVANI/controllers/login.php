@@ -1,4 +1,4 @@
 <?php
 
 // Include the home page
-include '/DHVANI/views/login.view.php';
+include "../DHVANI/views/login.view.php";

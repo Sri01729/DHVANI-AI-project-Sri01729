@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $existingEmail = $checkQuery->fetchColumn();
             if ($existingEmail) {
                 echo '<script type="text/javascript">';
-                echo 'window.location.href = "../DHVANI/controllers/loading.php";';
+                echo 'window.location.href = "../controllers/loading.php";';
                 echo '</script>';
 
                 exit();
