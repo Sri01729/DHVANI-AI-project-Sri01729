@@ -26,7 +26,7 @@
                     <div id="prevSong"><i class="fa-solid fa-backward"></i></div>
                     <div><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
                     <div id="nextSong"><i class="fa-solid fa-forward"></i></div>
-                    <div><i class="fas fa-circle-notch fa-sm" aria-hidden="true"></i></div>
+                    <div id="loopButton"><i class="fas fa-circle-notch fa-sm" aria-hidden="true"></i></div>
                 </div>
             </div>
             <div class="sound-button-container">

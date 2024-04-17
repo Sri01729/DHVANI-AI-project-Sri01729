@@ -10,6 +10,9 @@ var soundButton = document.getElementById('soundButton');
 var soundIcon = document.getElementById('soundIcon');
 var isSoundOn = false;
 var shuffleClickCount = 0; // Starts at 0, meaning shuffle is initially off
+const nextButton = document.getElementById("nextSong");
+var controlLoop = document.querySelector('.controls div:nth-child(5)');
+
 
 
 var modal = document.getElementById("myModal");
@@ -236,12 +239,12 @@ song.addEventListener('pause', () => {
     clearInterval(updateProgress); // Stop updating progress when paused
 });
 
-song.addEventListener('ended', () => {
-    clearInterval(updateProgress); // Stop updating progress when song ends
-    progress.value = 0; // Reset progress bar when song ends
-    currentSongIndex++;
-    fetchNextSongAndPlay(currentSongIndex);
-});
+// song.addEventListener('ended', () => {
+//     clearInterval(updateProgress); // Stop updating progress when song ends
+//     progress.value = 0; // Reset progress bar when song ends
+//     currentSongIndex++;
+//     fetchNextSongAndPlay(currentSongIndex);
+// });
 
 // Seeking functionality
 progress.addEventListener('input', () => {
@@ -397,12 +400,12 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
     // Select the first child of the controls container
 
-    var control = document.querySelector('.controls div:nth-child(5)');
 
-    control.addEventListener('click', function () {
+
+    controlLoop.addEventListener('click', function () {
         // Toggle the 'clicked' class to change the color
         this.classList.toggle('clicked');
-        alert('under construction');
+        controlLoop.classList.toggle('active');  // Toggle 'active' class to reflect loop state
 
     });
 });
@@ -704,9 +707,21 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+song.addEventListener('ended', () => {
+    if (controlLoop.classList.contains('active')) {
+        // If the loop button is active, restart the song
+        song.currentTime = 0;
+        progress.click();
+    } else {
+        // If not looping, click the 'Next' button to fetch the next song
+        nextButton.click();
+    }
+});
 
-
-
+loopButton.addEventListener('click', () => {
+    this.classList.toggle('clicked');
+    loopButton.classList.toggle('active');  // Toggle 'active' class to reflect loop state
+});
 
 // Voice assistant
 
@@ -717,26 +732,31 @@ document.addEventListener('DOMContentLoaded', function () {
             'play happy music': () => {
                 console.log("Playing happy music...");
                 fetchSongByMood('happy');
+                selectedMood = 'happy';
                 updatePlayButton();
             },
             'play sad music': () => {
                 console.log("Playing sad music...");
                 fetchSongByMood('sad');
+                selectedMood = 'sad';
                 updatePlayButton();
             },
             'play angry music': () => {
                 console.log("Playing angry music...");
                 fetchSongByMood('angry');
+                selectedMood = 'angry';
                 updatePlayButton();
             },
             'play calm music': () => {
                 console.log("Playing calm music...");
                 fetchSongByMood('calm');
+                selectedMood = 'calm';
                 updatePlayButton();
             },
             'play surprise music': () => {
                 console.log("Playing surprise music...");
                 fetchSongByMood('surprise');
+                selectedMood = 'surprise';
                 updatePlayButton();
             }
         };
