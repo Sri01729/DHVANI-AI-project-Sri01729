@@ -24,7 +24,7 @@ To get Dhvani up and running on your local machine, follow these steps:
 1. Clone the GitHub repository and open it in GitHub Desktop.
 
 ```bash
-git clone https://github.com/nic-dgl409-wi24/dgl-409-capstone-project-Sri01729
+https://github.com/Sri01729/DHVANI-AI-project-Sri01729.git
 
 ```
 ## Step 2: Open the Project in VS Code
